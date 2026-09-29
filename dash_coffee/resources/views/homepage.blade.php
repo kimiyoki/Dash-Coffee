@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DashCoffee - Your Daily Coffee Moment</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>DashCoffee - Take a dash, stay a while</title>
+    <link rel="stylesheet" href="{{ asset('css/homepage.css')}}">
+    <script src="{{ asset('js/homepage.js') }}"></script>
 </head>
 <body>
     <nav class="navbar">
@@ -160,6 +161,6 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="homepage.js"></script>
 </body>
 </html>
