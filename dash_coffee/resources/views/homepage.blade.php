@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,14 @@
     <link rel="stylesheet" href="{{ asset('css/homepage.css')}}">
     <script src="{{ asset('js/homepage.js') }}"></script>
 </head>
+
 <body>
     <nav class="navbar">
         <div class="navbar-container">
-            <div class="navbar-logo">DASHCOFFEE</div>
+            <div class="navbar-logo">
+                <img src="{{ asset('images/dashcoffee-logo.jpg') }}" class="navbar-logo-img">
+                <span class="brand-text">DASH COFFEE</span>
+            </div>
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="menu.html" class="nav-link">Menu</a></li>
@@ -47,6 +52,293 @@
         </div>
     </section>
 
+    <!-- Menu Categories Section -->
+    <section id="menu" class="menu">
+        <div class="menu-container">
+            <h2 class="section-title">Our Menu</h2>
+
+            <div class="menu-tabs">
+                <button class="tab-btn active" data-tab="coffee">Iced Coffee</button>
+                <button class="tab-btn" data-tab="milktea">Milk Tea</button>
+                <button class="tab-btn" data-tab="dessert">Desserts</button>
+                <button class="tab-btn" data-tab="frappe">Frappes</button>
+                <button class="tab-btn" data-tab="hot">Hot Drinks</button>
+                <button class="tab-btn" data-tab="fruity">Fruiteas</button>
+                <button class="tab-btn" data-tab="silog">Silog Meals</button>
+                <button class="tab-btn" data-tab="sandwiches">Sandwiches</button>
+            </div>
+
+            <!-- Coffee Tab -->
+            <div class="tab-content active" id="coffee">
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <h4>Dash Latte</h4>
+                        <p class="price">₱49</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Cloud Latte</h4>
+                        <p class="price">₱49</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Cloud Seasalt</h4>
+                        <p class="price">₱49</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Spanish Latte</h4>
+                        <p class="price">₱49</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Macchiato</h4>
+                        <p class="price">₱49</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Sweet Americano</h4>
+                        <p class="price">₱49</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Dark Mocha</h4>
+                        <p class="price">₱49</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Milk Tea Tab -->
+            <div class="tab-content" id="milktea">
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <h4>Tokyo Brown Sugar</h4>
+                        <p class="price">₱49</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Sapporo</h4>
+                        <p class="price">₱49</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Hokkaido</h4>
+                        <p class="price">₱49</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Okinawa Roasted</h4>
+                        <p class="price">₱49</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Nagoya Choco</h4>
+                        <p class="price">₱49</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Kyoto Matcha</h4>
+                        <p class="price">₱49</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dessert Tab -->
+            <div class="tab-content" id="dessert">
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <h4>Forest Cake</h4>
+                        <p class="price">₱59</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Matcha Cream</h4>
+                        <p class="price">₱59</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Choco Muffy</h4>
+                        <p class="price">₱59</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Mango Cream</h4>
+                        <p class="price">₱59</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Dark Chocolate</h4>
+                        <p class="price">₱59</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Velvet Cake</h4>
+                        <p class="price">₱59</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Frappe Tab -->
+            <div class="tab-content" id="frappe">
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <h4>Dark Forest</h4>
+                        <p class="price">₱69</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Taro Dream</h4>
+                        <p class="price">₱69</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Red Chocolate</h4>
+                        <p class="price">₱69</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Matchy Choco</h4>
+                        <p class="price">₱69</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Vanilla Bean</h4>
+                        <p class="price">₱69</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Oreo Cream</h4>
+                        <p class="price">₱69</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hot Drinks Tab -->
+            <div class="tab-content" id="hot">
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <h4>Dash Latte</h4>
+                        <p class="price">₱59</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Spanish Latte</h4>
+                        <p class="price">₱59</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Dark Chocolate</h4>
+                        <p class="price">₱59</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Hazelnut</h4>
+                        <p class="price">₱59</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Caramel Macchiato</h4>
+                        <p class="price">₱59</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Matcha Latte</h4>
+                        <p class="price">₱59</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fruiteas Tab -->
+            <div class="tab-content" id="fruity">
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <h4>Strawberry</h4>
+                        <p class="price">₱49 - ₱59</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Green Apple</h4>
+                        <p class="price">₱49 - ₱59</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Mango</h4>
+                        <p class="price">₱49 - ₱59</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Lychee</h4>
+                        <p class="price">₱49 - ₱59</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Berry Treat</h4>
+                        <p class="price">₱69</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Silog Meals Tab -->
+            <div class="tab-content" id="silog">
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <h4>Hotsilog</h4>
+                        <p class="price">₱59</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Hamsilog</h4>
+                        <p class="price">₱59</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Longsilog</h4>
+                        <p class="price">₱59</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Tapsilog</h4>
+                        <p class="price">₱79</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Tosilog</h4>
+                        <p class="price">₱79</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Chick-silog</h4>
+                        <p class="price">₱79</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Porksilog</h4>
+                        <p class="price">₱89</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Spamsilog</h4>
+                        <p class="price">₱89</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Bangsilog</h4>
+                        <p class="price">₱99</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Hungarian</h4>
+                        <p class="price">₱99</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Nuggets</h4>
+                        <p class="price">₱99</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sandwiches Tab -->
+            <div class="tab-content" id="sandwiches">
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <h4>Spam Sandwich</h4>
+                        <p class="price">₱99</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Ham Sandwich</h4>
+                        <p class="price">₱69</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Hungarian Overload</h4>
+                        <p class="price">₱79</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Burger</h4>
+                        <p class="price">₱30</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Cheese Sticks</h4>
+                        <p class="price">₱20</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Fries</h4>
+                        <p class="price">₱25</p>
+                    </div>
+                    <div class="menu-item">
+                        <h4>Siomai / Gyoza</h4>
+                        <p class="price">₱10 - ₱55</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-cta">
+                <button class="btn-primary">VIEW FULL MENU</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products Section -->
     <section class="featured">
         <div class="featured-container">
             <h2 class="section-title">Featured Products</h2>
@@ -105,6 +397,55 @@
         </div>
     </section>
 
+    <!-- Why DashCoffee Section -->
+    <section class="why-dashcoffee">
+        <div class="why-container">
+            <h2 class="section-title">Why DashCoffee?</h2>
+            <div class="why-grid">
+                <div class="why-card">
+                    <div class="why-icon">⭐</div>
+                    <h3>Quality</h3>
+                    <p>Premium ingredients sourced for excellence in every cup</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">🏠</div>
+                    <h3>Cozy Atmosphere</h3>
+                    <p>A welcoming sanctuary perfect for studying, working, or relaxing</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">🌿</div>
+                    <h3>Fresh & Authentic</h3>
+                    <p>All drinks and meals prepared fresh daily with authentic recipes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Reviews Section -->
+    <section class="reviews">
+        <div class="reviews-container">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <p class="review-quote">"Budget friendly foods and drinks! Will definitely recommend this to
+                        students and wfh workers 🔥🫶🏻"</p>
+                    <p class="review-author">- Happy Customer</p>
+                </div>
+                <div class="review-card">
+                    <p class="review-quote">"Perfect spot for a quick coffee break. The staff is always friendly and
+                        welcoming!"</p>
+                    <p class="review-author">- Regular Visitor</p>
+                </div>
+                <div class="review-card">
+                    <p class="review-quote">"Amazing quality drinks at reasonable prices. My go-to place for milk teas
+                        and pastries!"</p>
+                    <p class="review-author">- Loyal Customer</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Find Us Section -->
     <section class="find-us">
         <div class="find-us-container">
             <h2 class="section-title">Find Us</h2>
@@ -126,12 +467,62 @@
                         </div>
                     </div>
 
-                    <a href="https://maps.app.goo.gl/K7sYFxtxxMJADu3k6" target="_blank" class="btn-primary">VIEW LOCATION IN GOOGLE MAP</a>
+                    <a href="https://maps.app.goo.gl/K7sYFxtxxMJADu3k6" target="_blank" class="btn-primary">VIEW
+                        LOCATION IN GOOGLE MAP</a>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Contact Us Section -->
+    <section id="contact" class="contact">
+        <div class="contact-container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <span class="contact-icon">✉️</span>
+                        <h3>Email</h3>
+                        <a href="mailto:eiramvargas@yahoo.com">eiramvargas@yahoo.com</a>
+                    </div>
+
+                    <div class="contact-method">
+                        <span class="contact-icon">📱</span>
+                        <h3>Phone</h3>
+                        <a href="tel:+639202773807">0920 277 3807</a>
+                    </div>
+
+                    <div class="contact-method">
+                        <span class="contact-icon">👥</span>
+                        <h3>Follow Us</h3>
+                        <div class="social-links">
+                            <a href="https://www.facebook.com/Dash-Coffee-Montalban/" target="_blank">Facebook</a>
+                            <a href="https://www.instagram.com/dashcfee_montalban/" target="_blank">Instagram</a>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn-primary contact-cta">CONTACT US</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feedback Form Section -->
+    <section class="feedback">
+        <div class="feedback-container">
+            <h2 class="section-title">Share Your Feedback</h2>
+            <div class="feedback-form">
+                <textarea id="feedbackTextarea" class="feedback-textarea"
+                    placeholder="Share your thoughts..."></textarea>
+                <div class="feedback-counter">
+                    <span id="charCount">0</span> / 500 characters
+                </div>
+                <button class="btn-primary btn-submit-feedback">SUBMIT FEEDBACK</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-content">
@@ -161,6 +552,7 @@
         </div>
     </footer>
 
-    <script src="homepage.js"></script>
+    <script></script> src="homepage.js"></script>
 </body>
+
 </html>
