@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DashCoffee - Your Daily Coffee Moment</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>DashCoffee - Take a dash, stay a while</title>
+    <link rel="stylesheet" href="{{ asset('css/homepage.css')}}">
+    <script src="{{ asset('js/homepage.js') }}"></script>
 </head>
 <body>
     <!-- Navigation Header -->
     <nav class="navbar">
         <div class="navbar-container">
-            <div class="navbar-logo">☕ DASHCOFFEE</div>
+            <div class="navbar-logo">DASHCOFFEE</div>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
@@ -520,7 +521,7 @@
         <div class="footer-container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>☕ DASHCOFFEE</h3>
+                    <h3>DASHCOFFEE</h3>
                     <p>Your daily coffee moment. Every sip counts.</p>
                 </div>
 
@@ -549,6 +550,6 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="homepage.js"></script>
 </body>
 </html>
