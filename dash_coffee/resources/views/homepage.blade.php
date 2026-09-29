@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +8,15 @@
     <link rel="stylesheet" href="{{ asset('css/homepage.css')}}">
     <script src="{{ asset('js/homepage.js') }}"></script>
 </head>
+
 <body>
     <!-- Navigation Header -->
     <nav class="navbar">
         <div class="navbar-container">
-            <div class="navbar-logo">DASHCOFFEE</div>
+            <div class="navbar-logo">
+                <img src="{{ asset('images/dashcoffee-logo.jpg') }}" class="navbar-logo-img">
+                <span class="brand-text">DASH COFFEE</span>
+            </div>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
@@ -33,7 +38,7 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1 class="hero-title">YOUR DAILY COFFEE MOMENT</h1>
+            <h1 class="hero-title">YOUR DAILY DASH OF COFFEE</h1>
             <p class="hero-subtitle">Take a dash, stay a while.</p>
             <button class="btn-primary btn-explore">EXPLORE MENU</button>
         </div>
@@ -43,9 +48,11 @@
     <section id="about" class="about">
         <div class="about-container">
             <div class="about-card">
-                <h2>About DashCoffee</h2>
-                <p>Welcome to DashCoffee, where every sip is a moment of pure bliss. We craft premium coffee beverages, delicious milk teas, and savory meals in a cozy atmosphere. Whether you're a student, a work-from-home professional, or simply looking for a peaceful escape, DashCoffee is your perfect sanctuary.</p>
-                <p>Our commitment is to deliver quality, freshness, and comfort in every cup and every plate we serve.</p>
+                <h2>About Dash Coffee</h2>
+                <p>Dash Coffee is a cozy spot for great coffee, refreshing milk teas, and satisfying meals. 
+                Whether you're studying, working, meeting friends, or simply taking a break
+                We're here to make every visit comfortable and enjoyable.</p>
+                <p>Good drinks. Good food. Good moments. That’s Dash Coffee. </p>
                 <button class="btn-primary">LEARN MORE</button>
             </div>
         </div>
@@ -55,7 +62,7 @@
     <section id="menu" class="menu">
         <div class="menu-container">
             <h2 class="section-title">Our Menu</h2>
-            
+
             <div class="menu-tabs">
                 <button class="tab-btn active" data-tab="coffee">Iced Coffee</button>
                 <button class="tab-btn" data-tab="milktea">Milk Tea</button>
@@ -426,15 +433,18 @@
             <h2 class="section-title">What Our Customers Say</h2>
             <div class="reviews-grid">
                 <div class="review-card">
-                    <p class="review-quote">"Budget friendly foods and drinks! Will definitely recommend this to students and wfh workers 🔥🫶🏻"</p>
+                    <p class="review-quote">"Budget friendly foods and drinks! Will definitely recommend this to
+                        students and wfh workers 🔥🫶🏻"</p>
                     <p class="review-author">- Happy Customer</p>
                 </div>
                 <div class="review-card">
-                    <p class="review-quote">"Perfect spot for a quick coffee break. The staff is always friendly and welcoming!"</p>
+                    <p class="review-quote">"Perfect spot for a quick coffee break. The staff is always friendly and
+                        welcoming!"</p>
                     <p class="review-author">- Regular Visitor</p>
                 </div>
                 <div class="review-card">
-                    <p class="review-quote">"Amazing quality drinks at reasonable prices. My go-to place for milk teas and pastries!"</p>
+                    <p class="review-quote">"Amazing quality drinks at reasonable prices. My go-to place for milk teas
+                        and pastries!"</p>
                     <p class="review-author">- Loyal Customer</p>
                 </div>
             </div>
@@ -463,7 +473,8 @@
                         </div>
                     </div>
 
-                    <a href="https://maps.app.goo.gl/K7sYFxtxxMJADu3k6" target="_blank" class="btn-primary">VIEW LOCATION IN GOOGLE MAP</a>
+                    <a href="https://maps.app.goo.gl/K7sYFxtxxMJADu3k6" target="_blank" class="btn-primary">VIEW
+                        LOCATION IN GOOGLE MAP</a>
                 </div>
             </div>
         </div>
@@ -507,7 +518,8 @@
         <div class="feedback-container">
             <h2 class="section-title">Share Your Feedback</h2>
             <div class="feedback-form">
-                <textarea id="feedbackTextarea" class="feedback-textarea" placeholder="Share your thoughts..."></textarea>
+                <textarea id="feedbackTextarea" class="feedback-textarea"
+                    placeholder="Share your thoughts..."></textarea>
                 <div class="feedback-counter">
                     <span id="charCount">0</span> / 500 characters
                 </div>
@@ -550,6 +562,7 @@
         </div>
     </footer>
 
-    <script src="homepage.js"></script>
+    <script></script> src="homepage.js"></script>
 </body>
+
 </html>
