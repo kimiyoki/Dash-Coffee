@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DashCoffee - Point of Sale & Ordering</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-green: #4CAF50;
+            --light-mint: #D0E8D0;
+            --soft-sage: #A8D5BA;
+            --pale-green: #B2E0B2;
+            --white: #FFFFFF;
+            --dark-slate: #1E2922;
+            --dark-bg: #18241B;
+            --text-primary: #1E2922;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--white);
+            color: var(--text-primary);
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ============ HEADER & NAVIGATION ============ */
+        header {
+            background-color: var(--white);
+            border-bottom: 2px solid var(--light-mint);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: color 0.3s, border-bottom 0.3s;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 0.25rem;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            color: var(--primary-green);
+        }
+
+        nav a.active {
+            color: var(--primary-green);
+            border-bottom-color: var(--primary-green);
+        }
+
+        .auth-btn {
+            background-color: var(--primary-green);
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .auth-btn:hover {
+            box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 0.35rem;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-primary);
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* ============ MOBILE MENU ============ */
+        @media (max-width: 768px) {
+            nav {
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background-color: var(--white);
+                flex-direction: column;
+                gap: 1rem;
+                padding: 2rem 1rem;
+                display: none;
+                border-bottom: 2px solid var(--light-mint);
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            nav a {
+                padding-bottom: 0.5rem;
+            }
+        }
+
+        /* ============ MAIN CONTENT ============ */
+        main {
+            flex: 1;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .view {
+            display: none;
+        }
+
+        .view.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============ LOGIN VIEW ============ */
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 70vh;
+        }
+
+        .login-card {
+            background-color: var(--white);
+            border: 2px solid var(--light-mint);
+            border-radius: 12px;
+            padding: 3rem;
+            max-width: 450px;
+            width: 100%;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .login-header .logo {
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .login-header h1 {
+            font-size: 1.8rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .login-header p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid var(--soft-sage);
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-green);
+            box-shadow: 0 0 8px rgba(76, 175, 80, 0.2);
+        }
+
+        .password-toggle {
+            position: relative;
+        }
+
+        .password-toggle .toggle-btn {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--primary-green);
+            font-size: 1.2rem;
+            padding: 0.5rem;
+        }
+
+        .checkbox-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            cursor: pointer;
+        }
+
+        .forgot-password {
+            color: var(--primary-green);
+            text-decoration: none;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .forgot-password:hover {
+            opacity: 0.8;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: var(--primary-green);
+            color: var(--white);
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 1rem;
+        }
+
+        .login-btn:hover {
+            box-shadow: 0 0 20px rgba(76, 175, 80, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .signup-toggle {
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .signup-link {
+            color: var(--primary-green);
+            cursor: pointer;
+            font-weight: 600;
+            transition: opacity 0.3s;
+        }
+
+        .signup-link:hover {
+            opacity: 0.8;
+        }
+
+        .social-login {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-btn {
+            padding: 0.75rem;
+            border: 2px solid var(--soft-sage);
+            background-color: var(--white);
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            color: var(--text-primary);
+        }
+
+        .social-btn:hover {
+            border-color: var(--primary-green);
+            background-color: var(--light-mint);
+        }
+
+        /* ============ HOME VIEW ============ */
+        .hero {
+            background: linear-gradient(135deg, var(--dark-slate) 0%, var(--dark-bg) 100%);
+            color: var(--white);
+            padding: 4rem 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .cta-btn {
+            background-color: var(--primary-green);
+            color: var(--white);
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .cta-btn:hover {
+            box-shadow: 0 0 20px rgba(76, 175, 80, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .product-card {
+            background-color: var(--light-mint);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+            border: 2px solid var(--soft-sage);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.2);
+        }
+
+        .product-card h3 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .price-badge {
+            background-color: var(--primary-green);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+
+        .why-section {
+            margin: 3rem 0;
+        }
+
+        .why-section h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+            color: var(--text-primary);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .value-card {
+            background-color: var(--pale-green);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            border: 2px solid var(--soft-sage);
+        }
+
+        .value-card h3 {
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .value-card p {
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+
+        .review-card {
+            background: linear-gradient(135deg, var(--light-mint) 0%, var(--pale-green) 100%);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            border: 2px solid var(--soft-sage);
+            margin-top: 2rem;
+            font-style: italic;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* ============ ABOUT US VIEW ============ */
+        .about-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .about-card {
+            background-color: var(--light-mint);
+            border: 2px solid var(--soft-sage);
+            border-radius: 12px;
+            padding: 2rem;
+            line-height: 1.8;
+            color: var(--text-primary);
+        }
+
+        .about-card h2 {
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .about-card p {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        /* ============ MENU VIEW ============ */
+        .menu-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1.5rem;
+            border: 2px solid var(--soft-sage);
+            background-color: var(--white);
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-primary);
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--primary-green);
+            background-color: var(--light-mint);
+        }
+
+        .filter-btn.active {
+            background-color: var(--primary-green);
+            color: var(--white);
+            border-color: var(--primary-green);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .menu-item {
+            background-color: var(--white);
+            border: 2px solid var(--light-mint);
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(76, 175, 80, 0.15);
+            border-color: var(--primary-green);
+        }
+
+        .menu-item.hidden {
+            display: none;
+        }
+
+        .menu-item h4 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .menu-price {
+            background-color: var(--primary-green);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            font-size: 0.95rem;
+            margin-top: 0.5rem;
+        }
+
+        /* ============ CONTACT & LOCATION VIEW ============ */
+        .contact-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-card {
+            background-color: var(--light-mint);
+            border: 2px solid var(--soft-sage);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .contact-card h3 {
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .contact-card p {
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .contact-card a {
+            color: var(--primary-green);
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.3s;
+        }
+
+        .contact-card a:hover {
+            opacity: 0.8;
+        }
+
+        .feedback-section {
+            background-color: var(--pale-green);
+            border: 2px solid var(--soft-sage);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feedback-section h3 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--soft-sage);
+            border-radius: 6px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 1rem;
+            resize: vertical;
+            min-height: 120px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-green);
+            box-shadow: 0 0 8px rgba(76, 175, 80, 0.2);
+        }
+
+        .char-counter {
+            text-align: right;
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        .submit-btn {
+            background-color: var(--primary-green);
+            color: var(--white);
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* ============ FOOTER ============ */
+        footer {
+            background-color: var(--dark-bg);
+            color: var(--white);
+            padding: 2rem 1rem;
+            text-align: center;
+            margin-top: auto;
+            border-top: 2px solid var(--light-mint);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section h4 {
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section a {
+            color: var(--white);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-green);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--soft-sage);
+            padding-top: 1rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* ============ TOAST NOTIFICATION ============ */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary-green);
+            color: var(--white);
+            padding: 1rem 1.5rem;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            animation: slideIn 0.3s ease-out;
+            z-index: 1000;
+        }
+
+        .toast.success {
+            background-color: var(--primary-green);
+        }
+
+        .toast.error {
+            background-color: #f44336;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+        }
+
+        .toast.hide {
+            animation: slideOut 0.3s ease-out;
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 768px) {
+            main {
+                padding: 1.5rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .login-card {
+                padding: 2rem;
+            }
+
+            .social-login {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+
+            .featured-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 1rem;
+            }
+
+            .product-card {
+                padding: 1rem;
+            }
+
+            .values-grid {
+                gap: 1rem;
+            }
+
+            .toast {
+                bottom: 10px;
+                right: 10px;
+                left: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER & NAVIGATION -->
+    <header>
+        <div class="nav-container">
+            <div class="logo" onclick="switchView('home')">☕ DASHCOFFEE</div>
+            <nav id="navMenu" class="nav-menu">
+                <a class="nav-link" data-view="home" onclick="switchView('home')">Home</a>
+                <a class="nav-link" data-view="about" onclick="switchView('about')">About Us</a>
+                <a class="nav-link" data-view="menu" onclick="switchView('menu')">Menu</a>
+                <a class="nav-link" data-view="contact" onclick="switchView('contact')">Contact</a>
+                <button class="auth-btn" onclick="switchView('login')" id="authBtn">[LOG IN]</button>
+            </nav>
+            <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- LOGIN VIEW -->
+        <div id="login" class="view active">
+            <div class="login-container">
+                <div class="login-card">
+                    <div class="login-header">
+                        <div class="logo">☕ DASHCOFFEE</div>
+                        <h1>Welcome Back!</h1>
+                        <p>Log in to order your favorite coffee and earn reward points.</p>
+                    </div>
+
+                    <form id="loginForm" onsubmit="handleLogin(event)">
+                        <div class="form-group">
+                            <label for="email">Email / Username</label>
+                            <input type="text" id="email" name="email" placeholder="Enter your email or username" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <div class="password-toggle">
+                                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                                <button type="button" class="toggle-btn" onclick="togglePasswordVisibility()">👁️</button>
+                            </div>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" id="rememberMe" name="rememberMe">
+                                Remember Me
+                            </label>
+                            <a class="forgot-password" onclick="showToast('Password reset link sent to your email!', 'success')">Forgot Password?</a>
+                        </div>
+
+                        <button type="submit" class="login-btn">LOG IN</button>
+
+                        <div class="signup-toggle">
+                            Don't have an account? <span class="signup-link" onclick="showToast('Sign Up feature coming soon!', 'success')">Sign Up</span>
+                        </div>
+
+                        <div class="social-login">
+                            <button type="button" class="social-btn" onclick="handleSocialLogin('Google')">🔐 Google</button>
+                            <button type="button" class="social-btn" onclick="handleSocialLogin('Facebook')">👥 Facebook</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- HOME VIEW -->
+        <div id="home" class="view">
+            <div class="hero">
+                <h1>YOUR DAILY COFFEE MOMENT</h1>
+                <p>Take a dash, stay a while.</p>
+                <button class="cta-btn" onclick="switchView('menu')">EXPLORE MENU</button>
+            </div>
+
+            <div>
+                <h2 style="text-align: center; margin-bottom: 2rem; font-size: 1.5rem;">Featured Products</h2>
+                <div class="featured-grid">
+                    <div class="product-card">
+                        <h3>Dash Latte</h3>
+                        <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">Smooth & Creamy</p>
+                        <div class="price-badge">₱49</div>
+                    </div>
+                    <div class="product-card">
+                        <h3>Cloud Seasalt</h3>
+                        <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">Unique & Refreshing</p>
+                        <div class="price-badge">₱49</div>
+                    </div>
+                    <div class="product-card">
+                        <h3>Okinawa Cheesecake</h3>
+                        <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">Creamy & Delicious</p>
+                        <div class="price-badge">₱79</div>
+                    </div>
+                    <div class="product-card">
+                        <h3>Matcha Frappe</h3>
+                        <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">Cool & Smooth</p>
+                        <div class="price-badge">₱69</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="why-section">
+                <h2>Why DashCoffee?</h2>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <h3>☕ Quality</h3>
+                        <p>Premium coffee beans sourced and crafted with care for the perfect cup.</p>
+                    </div>
+                    <div class="value-card">
+                        <h3>🏠 Cozy</h3>
+                        <p>Comfortable and welcoming space to relax, work, or connect with friends.</p>
+                    </div>
+                    <div class="value-card">
+                        <h3>🌱 Fresh</h3>
+                        <p>Fresh ingredients prepared daily to ensure the best taste in every order.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="review-card">
+                "Budget friendly foods and drinks! Will definitely recommend this to students and wfh workers 🔥🫶🏻"
+            </div>
+        </div>
+
+        <!-- ABOUT US VIEW -->
+        <div id="about" class="view">
+            <div class="about-container">
+                <div class="about-card">
+                    <h2>About DashCoffee</h2>
+                    <p>
+                        Welcome to DashCoffee, your favorite neighborhood café dedicated to delivering exceptional quality at affordable prices. 
+                        We believe that everyone deserves to enjoy premium coffee and delicious food without breaking the bank.
+                    </p>
+                    <p>
+                        Our mission is simple: to create a cozy space where students, remote workers, and coffee enthusiasts can relax, 
+                        work, and connect. Every beverage is crafted with precision, and every meal is prepared fresh to guarantee your satisfaction.
+                    </p>
+                    <p>
+                        From our signature Dash Latte to our beloved Filipino comfort meals, DashCoffee is more than just a café—it's 
+                        your second home. Join our community and discover why thousands of customers return to us every day.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- MENU VIEW -->
+        <div id="menu" class="view">
+            <h2 style="text-align: center; margin-bottom: 2rem; font-size: 1.8rem;">DashCoffee Menu</h2>
+            
+            <div class="menu-filters">
+                <button class="filter-btn active" onclick="filterMenu('all')">All</button>
+                <button class="filter-btn" onclick="filterMenu('iced-coffee')">Iced Coffee</button>
+                <button class="filter-btn" onclick="filterMenu('milk-tea')">Milk Tea</button>
+                <button class="filter-btn" onclick="filterMenu('dessert')">Desserts</button>
+                <button class="filter-btn" onclick="filterMenu('frappes')">Frappes</button>
+                <button class="filter-btn" onclick="filterMenu('hot-drinks')">Hot Drinks</button>
+                <button class="filter-btn" onclick="filterMenu('fruiteas')">Fruiteas</button>
+                <button class="filter-btn" onclick="filterMenu('meals')">Meals</button>
+                <button class="filter-btn" onclick="filterMenu('sandwiches')">Sandwiches</button>
+                <button class="filter-btn" onclick="filterMenu('snacks')">Snacks</button>
+                <button class="filter-btn" onclick="filterMenu('addons')">Add-ons</button>
+            </div>
+
+            <div class="menu-grid" id="menuGrid">
+                <!-- ICED COFFEE -->
+                <div class="menu-item" data-category="iced-coffee">
+                    <h4>Dash Latte</h4>
+                    <div class="menu-price">₱49</div>
+                </div>
+                <div class="menu-item" data-category="iced-coffee">
+                    <h4>Cloud Latte</h4>
+                    <div class="menu-price">₱49</div>
+                </div>
+                <div class="menu-item" data-category="iced-coffee">
+                    <h4>Cloud Seasalt</h4>
+                    <div class="menu-price">₱49</div>
+                </div>
+                <div class="menu-item" data-category="iced-coffee">
+                    <h4>Spanish Latte</h4>
+                    <div class="menu-price">₱49</div>
+                </div>
+                <div class="menu-item" data-category="iced-coffee">
+                    <h4>Macchiato</h4>
+                    <div class="menu-price">₱49</div>
+                </div>
+                <div class="menu-item" data-category="iced-coffee">
+                    <h4>Sweet Americano</h4>
+                    <div class="menu-price">₱49</div>
+                </div>
+                <div class="menu-item" data-category="iced-coffee">
+                    <h4>Dark Mocha</h4>
+                    <div class="menu-price">₱49</div>
+                </div>
+
+                <!-- MILK TEA -->
+                <div class="menu-item" data-category="milk-tea">
+                    <h4>Tokyo Brown Sugar</h4>
+                    <div class="menu-price">₱49</div>
+                </div>
+                <div class="menu-item" data-category="milk-tea">
+                    <h4>Sapporo</h4>
+                    <div class="menu-price">₱49</div>
+                </div>
+                <div class="menu-item" data-category="milk-tea">
+                    <h4>Hokkaido</h4>
+                    <div class="menu-price">₱49</div>
+                </div>
+                <div class="menu-item" data-category="milk-tea">
+                    <h4>Okinawa Roasted</h4>
+                    <div class="menu-price">₱49</div>
+                </div>
+                <div class="menu-item" data-category="milk-tea">
+                    <h4>Nagoya Choco</h4>
+                    <div class="menu-price">₱49</div>
+                </div>
+                <div class="menu-item" data-category="milk-tea">
+                    <h4>Kyoto Matcha</h4>
+                    <div class="menu-price">₱49</div>
+                </div>
+
+                <!-- DESSERTS -->
+                <div class="menu-item" data-category="dessert">
+                    <h4>Okinawa Cheesecake</h4>
+                    <div class="menu-price">₱79</div>
+                </div>
+                <div class="menu-item" data-category="dessert">
+                    <h4>Matcha Cheesecake</h4>
+                    <div class="menu-price">₱79</div>
+                </div>
+                <div class="menu-item" data-category="dessert">
+                    <h4>Mango Cheesecake</h4>
+                    <div class="menu-price">₱79</div>
+                </div>
+                <div class="menu-item" data-category="dessert">
+                    <h4>Red Velvet Cheesecake</h4>
+                    <div class="menu-price">₱79</div>
+                </div>
+                <div class="menu-item" data-category="dessert">
+                    <h4>Taro Cheesecake</h4>
+                    <div class="menu-price">₱79</div>
+                </div>
+                <div class="menu-item" data-category="dessert">
+                    <h4>Dark Chocolate Cheesecake</h4>
+                    <div class="menu-price">₱79</div>
+                </div>
+                <div class="menu-item" data-category="dessert">
+                    <h4>Forest Cake</h4>
+                    <div class="menu-price">₱59</div>
+                </div>
+                <div class="menu-item" data-category="dessert">
+                    <h4>Matcha Cream</h4>
+                    <div class="menu-price">₱59</div>
+                </div>
+                <div class="menu-item" data-category="dessert">
+                    <h4>Choco Muffy</h4>
+                    <div class="menu-price">₱59</div>
+                </div>
+                <div class="menu-item" data-category="dessert">
+                    <h4>Mango Cream</h4>
+                    <div class="menu-price">₱59</div>
+                </div>
+                <div class="menu-item" data-category="dessert">
+                    <h4>Dark Chocolate</h4>
+                    <div class="menu-price">₱59</div>
+                </div>
+                <div class="menu-item" data-category="dessert">
+                    <h4>Velvet Cake</h4>
+                    <div class="menu-price">₱59</div>
+                </div>
+
+                <!-- FRAPPES -->
+                <div class="menu-item" data-category="frappes">
+                    <h4>Dark Forest</h4>
+                    <div class="menu-price">₱69</div>
+                </div>
+                <div class="menu-item" data-category="frappes">
+                    <h4>Taro Dream</h4>
+                    <div class="menu-price">₱69</div>
+                </div>
+                <div class="menu-item" data-category="frappes">
+                    <h4>Red Chocolate</h4>
+                    <div class="menu-price">₱69</div>
+                </div>
+                <div class="menu-item" data-category="frappes">
+                    <h4>Matchy Choco</h4>
+                    <div class="menu-price">₱69</div>
+                </div>
+                <div class="menu-item" data-category="frappes">
+                    <h4>Vanilla Bean</h4>
+                    <div class="menu-price">₱69</div>
+                </div>
+                <div class="menu-item" data-category="frappes">
+                    <h4>Oreo Cream</h4>
+                    <div class="menu-price">₱69</div>
+                </div>
+                <div class="menu-item" data-category="frappes">
+                    <h4>Matcha Frappe</h4>
+                    <div class="menu-price">₱69</div>
+                </div>
+                <div class="menu-item" data-category="frappes">
+                    <h4>Strawberry Milk</h4>
+                    <div class="menu-price">₱69</div>
+                </div>
+                <div class="menu-item" data-category="frappes">
+                    <h4>Matcha Strawberry Latte</h4>
+                    <div class="menu-price">₱69</div>
+                </div>
+
+                <!-- HOT DRINKS -->
+                <div class="menu-item" data-category="hot-drinks">
+                    <h4>Dash Latte</h4>
+                    <div class="menu-price">₱59</div>
+                </div>
+                <div class="menu-item" data-category="hot-drinks">
+                    <h4>Spanish Latte</h4>
+                    <div class="menu-price">₱59</div>
+                </div>
+                <div class="menu-item" data-category="hot-drinks">
+                    <h4>Dark Chocolate</h4>
+                    <div class="menu-price">₱59</div>
+                </div>
+                <div class="menu-item" data-category="hot-drinks">
+                    <h4>Hazelnut</h4>
+                    <div class="menu-price">₱59</div>
+                </div>
+                <div class="menu-item" data-category="hot-drinks">
+                    <h4>Caramel Macchiato</h4>
+                    <div class="menu-price">₱59</div>
+                </div>
+                <div class="menu-item" data-category="hot-drinks">
+                    <h4>Matcha Latte</h4>
+                    <div class="menu-price">₱59</div>
+                </div>
+                <div class="menu-item" data-category="hot-drinks">
+                    <h4>Salted Cocoa Chocolate</h4>
+                    <div class="menu-price">₱59</div>
+                </div>
+                <div class="menu-item" data-category="hot-drinks">
+                    <h4>Salted Caramel Latte</h4>
+                    <div class="menu-price">₱59</div>
+                </div>
+
+                <!-- FRUITEAS -->
+                <div class="menu-item" data-category="fruiteas">
+                    <h4>Strawberry Fruitea</h4>
+                    <div class="menu-price">₱49</div>
+                </div>
+                <div class="menu-item" data-category="fruiteas">
+                    <h4>Green Apple Fruitea</h4>
+                    <div class="menu-price">₱49</div>
+                </div>
+                <div class="menu-item" data-category="fruiteas">
+                    <h4>Mango Fruitea</h4>
+                    <div class="menu-price">₱49</div>
+                </div>
+                <div class="menu-item" data-category="fruiteas">
+                    <h4>Lychee Fruitea</h4>
+                    <div class="menu-price">₱49</div>
+                </div>
+                <div class="menu-item" data-category="fruiteas">
+                    <h4>Strawberry Fruit Soda</h4>
+                    <div class="menu-price">₱59</div>
+                </div>
+                <div class="menu-item" data-category="fruiteas">
+                    <h4>Green Apple Fruit Soda</h4>
+                    <div class="menu-price">₱59</div>
+                </div>
+                <div class="menu-item" data-category="fruiteas">
+                    <h4>Mango Fruit Soda</h4>
+                    <div class="menu-price">₱59</div>
+                </div>
+                <div class="menu-item" data-category="fruiteas">
+                    <h4>Lychee Fruit Soda</h4>
+                    <div class="menu-price">₱59</div>
+                </div>
+                <div class="menu-item" data-category="fruiteas">
+                    <h4>Salted Caramel Frappe</h4>
+                    <div class="menu-price">₱69</div>
+                </div>
+
+                <!-- MEALS -->
+                <div class="menu-item" data-category="meals">
+                    <h4>Hotsilog</h4>
+                    <div class="menu-price">₱59</div>
+                </div>
+                <div class="menu-item" data-category="meals">
+                    <h4>Hamsilog</h4>
+                    <div class="menu-price">₱59</div>
+                </div>
+                <div class="menu-item" data-category="meals">
+                    <h4>Longsilog</h4>
+                    <div class="menu-price">₱59</div>
+                </div>
+                <div class="menu-item" data-category="meals">
+                    <h4>Tosilog</h4>
+                    <div class="menu-price">₱79</div>
+                </div>
+                <div class="menu-item" data-category="meals">
+                    <h4>Tapsilog</h4>
+                    <div class="menu-price">₱79</div>
+                </div>
+                <div class="menu-item" data-category="meals">
+                    <h4>Chicksilog</h4>
+                    <div class="menu-price">₱79</div>
+                </div>
+                <div class="menu-item" data-category="meals">
+                    <h4>Burgersilog</h4>
+                    <div class="menu-price">₱79</div>
+                </div>
+                <div class="menu-item" data-category="meals">
+                    <h4>Porksilog</h4>
+                    <div class="menu-price">₱89</div>
+                </div>
+                <div class="menu-item" data-category="meals">
+                    <h4>Spamsilog</h4>
+                    <div class="menu-price">₱89</div>
+                </div>
+                <div class="menu-item" data-category="meals">
+                    <h4>Bangsilog</h4>
+                    <div class="menu-price">₱99</div>
+                </div>
+                <div class="menu-item" data-category="meals">
+                    <h4>Hungarian</h4>
+                    <div class="menu-price">₱99</div>
+                </div>
+                <div class="menu-item" data-category="meals">
+                    <h4>Nuggets</h4>
+                    <div class="menu-price">₱99</div>
+                </div>
+
+                <!-- SANDWICHES -->
+                <div class="menu-item" data-category="sandwiches">
+                    <h4>Waffle</h4>
+                    <div class="menu-price">₱69</div>
+                </div>
+                <div class="menu-item" data-category="sandwiches">
+                    <h4>Ham Sandwich</h4>
+                    <div class="menu-price">₱69</div>
+                </div>
+                <div class="menu-item" data-category="sandwiches">
+                    <h4>Hungarian Overload</h4>
+                    <div class="menu-price">₱79</div>
+                </div>
+                <div class="menu-item" data-category="sandwiches">
+                    <h4>Spam Sandwich</h4>
+                    <div class="menu-price">₱99</div>
+                </div>
+                <div class="menu-item" data-category="sandwiches">
+                    <h4>Burger</h4>
+                    <div class="menu-price">₱30</div>
+                </div>
+
+                <!-- SNACKS -->
+                <div class="menu-item" data-category="snacks">
+                    <h4>Cheese Stick</h4>
+                    <div class="menu-price">₱20</div>
+                </div>
+                <div class="menu-item" data-category="snacks">
+                    <h4>Fries</h4>
+                    <div class="menu-price">₱25</div>
+                </div>
+                <div class="menu-item" data-category="snacks">
+                    <h4>Siomai</h4>
+                    <div class="menu-price">₱25</div>
+                </div>
+                <div class="menu-item" data-category="snacks">
+                    <h4>Gyoza</h4>
+                    <div class="menu-price">₱30</div>
+                </div>
+                <div class="menu-item" data-category="snacks">
+                    <h4>Big Siomai</h4>
+                    <div class="menu-price">₱10</div>
+                </div>
+                <div class="menu-item" data-category="snacks">
+                    <h4>Siomai Rice (Small)</h4>
+                    <div class="menu-price">₱40</div>
+                </div>
+                <div class="menu-item" data-category="snacks">
+                    <h4>Siomai Rice (Large)</h4>
+                    <div class="menu-price">₱55</div>
+                </div>
+
+                <!-- ADD-ONS -->
+                <div class="menu-item" data-category="addons">
+                    <h4>Coffee Jelly</h4>
+                    <div class="menu-price">₱9</div>
+                </div>
+                <div class="menu-item" data-category="addons">
+                    <h4>Pearls</h4>
+                    <div class="menu-price">₱9</div>
+                </div>
+                <div class="menu-item" data-category="addons">
+                    <h4>Salty Cream</h4>
+                    <div class="menu-price">₱10</div>
+                </div>
+                <div class="menu-item" data-category="addons">
+                    <h4>Crushed Oreos</h4>
+                    <div class="menu-price">₱9</div>
+                </div>
+                <div class="menu-item" data-category="addons">
+                    <h4>Coffee Shot</h4>
+                    <div class="menu-price">₱10</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTACT & LOCATION VIEW -->
+        <div id="contact" class="view">
+            <div class="contact-container">
+                <h2 style="text-align: center; margin-bottom: 2rem; font-size: 1.8rem;">Contact & Location</h2>
+                
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <h3>📍 Location</h3>
+                        <p>Block 3 Lot 53F Phase 4B, EASTWOOD RESIDENCES, Rodriguez, 1860 Rizal</p>
+                        <a href="https://maps.app.goo.gl/K7sYFxtxxMJADu3k6" target="_blank">View on Google Maps →</a>
+                    </div>
+
+                    <div class="contact-card">
+                        <h3>🕐 Opening Hours</h3>
+                        <p>1:00 PM to 9:00 PM</p>
+                        <p style="font-size: 0.85rem; margin-top: 0.5rem; opacity: 0.8;">Open Daily</p>
+                    </div>
+
+                    <div class="contact-card">
+                        <h3>📞 Contact Us</h3>
+                        <p>Email: <a href="mailto:eiramvargas@yahoo.com">eiramvargas@yahoo.com</a></p>
+                        <p>Phone: <a href="tel:09202773807">0920 277 3807</a></p>
+                    </div>
+
+                    <div class="contact-card">
+                        <h3>📱 Follow Us</h3>
+                        <p><a href="#">Facebook: Dash coffee montalban</a></p>
+                        <p><a href="#">Instagram: dashcfee_montalban</a></p>
+                    </div>
+                </div>
+
+                <div class="feedback-section">
+                    <h3>Send Us Your Feedback</h3>
+                    <form onsubmit="handleFeedback(event)">
+                        <div class="form-group">
+                            <label for="feedbackName">Your Name</label>
+                            <input type="text" id="feedbackName" placeholder="Enter your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="feedbackEmail">Your Email</label>
+                            <input type="email" id="feedbackEmail" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="feedback">Your Feedback</label>
+                            <textarea id="feedback" placeholder="Share your thoughts with us..." maxlength="500" onkeyup="updateCharCount()"></textarea>
+                            <div class="char-counter"><span id="charCount">0</span> / 500 characters</div>
+                        </div>
+                        <button type="submit" class="submit-btn">Submit Feedback</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>☕ DASHCOFFEE</h4>
+                <p style="font-size: 0.9rem;">Your daily coffee moment</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a onclick="switchView('home')">Home</a>
+                <a onclick="switchView('menu')">Menu</a>
+                <a onclick="switchView('about')">About Us</a>
+                <a onclick="switchView('contact')">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Dash Coffee. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // ============ VIEW SWITCHING ============
+        function switchView(viewName) {
+            // Hide all views
+            const views = document.querySelectorAll('.view');
+            views.forEach(view => view.classList.remove('active'));
+
+            // Show selected view
+            const selectedView = document.getElementById(viewName);
+            if (selectedView) {
+                selectedView.classList.add('active');
+            }
+
+            // Update active navigation link
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-view') === viewName) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Close mobile menu
+            closeHamburgerMenu();
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // ============ MOBILE MENU ============
+        function toggleMobileMenu() {
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        }
+
+        function closeHamburgerMenu() {
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+
+        // ============ PASSWORD VISIBILITY TOGGLE ============
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            const toggleBtn = document.querySelector('.password-toggle .toggle-btn');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleBtn.textContent = '🙈';
+            } else {
+                passwordInput.type = 'password';
+                toggleBtn.textContent = '👁️';
+            }
+        }
+
+        // ============ LOGIN FORM HANDLER ============
+        function handleLogin(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const rememberMe = document.getElementById('rememberMe').checked;
+
+            // Validation
+            if (!email || !password) {
+                showToast('Please fill in all fields', 'error');
+                return;
+            }
+
+            if (email.length < 3) {
+                showToast('Email/Username must be at least 3 characters', 'error');
+                return;
+            }
+
+            if (password.length < 6) {
+                showToast('Password must be at least 6 characters', 'error');
+                return;
+            }
+
+            // Success
+            showToast(`Welcome back, ${email}! Redirecting to menu...`, 'success');
+
+            // Remember me logic
+            if (rememberMe) {
+                localStorage.setItem('dashcoffee_user', email);
+            }
+
+            // Simulate login and redirect
+            setTimeout(() => {
+                switchView('menu');
+                updateAuthState(true, email);
+            }, 1500);
+        }
+
+        // ============ SOCIAL LOGIN ============
+        function handleSocialLogin(provider) {
+            showToast(`${provider} login coming soon!`, 'success');
+        }
+
+        // ============ AUTH STATE MANAGEMENT ============
+        function updateAuthState(isLoggedIn, username) {
+            const authBtn = document.getElementById('authBtn');
+            if (isLoggedIn) {
+                authBtn.textContent = `[LOGGED IN: ${username}]`;
+                authBtn.style.opacity = '0.7';
+            } else {
+                authBtn.textContent = '[LOG IN]';
+                authBtn.style.opacity = '1';
+            }
+        }
+
+        // ============ MENU FILTERING ============
+        function filterMenu(category) {
+            const menuItems = document.querySelectorAll('.menu-item');
+            const filterBtns = document.querySelectorAll('.filter-btn');
+
+            // Update active filter button
+            filterBtns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Filter items
+            menuItems.forEach(item => {
+                if (category === 'all') {
+                    item.classList.remove('hidden');
+                } else if (item.getAttribute('data-category') === category) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+        }
+
+        // ============ CHARACTER COUNTER ============
+        function updateCharCount() {
+            const feedbackTextarea = document.getElementById('feedback');
+            const charCount = document.getElementById('charCount');
+            charCount.textContent = feedbackTextarea.value.length;
+        }
+
+        // ============ FEEDBACK HANDLER ============
+        function handleFeedback(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('feedbackName').value.trim();
+            const email = document.getElementById('feedbackEmail').value.trim();
+            const feedback = document.getElementById('feedback').value.trim();
+
+            if (!name || !email || !feedback) {
+                showToast('Please fill in all fields', 'error');
+                return;
+            }
+
+            if (feedback.length < 10) {
+                showToast('Feedback must be at least 10 characters', 'error');
+                return;
+            }
+
+            showToast(`Thank you ${name}! Your feedback has been received.`, 'success');
+
+            // Reset form
+            event.target.reset();
+            updateCharCount();
+        }
+
+        // ============ TOAST NOTIFICATION ============
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.add('hide');
+                setTimeout(() => {
+                    document.body.removeChild(toast);
+                }, 300);
+            }, 3000);
+        }
+
+        // ============ INITIALIZATION ============
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check for remembered user
+            const savedUser = localStorage.getItem('dashcoffee_user');
+            if (savedUser) {
+                document.getElementById('email').value = savedUser;
+            }
+
+            // Set default view to login
+            switchView('login');
+
+            // Set up first menu filter
+            filterMenu('all');
+        });
+
+        // ============ PREVENT FORM SUBMISSION ON SOCIAL BUTTONS ============
+        document.addEventListener('DOMContentLoaded', function() {
+            const socialBtns = document.querySelectorAll('.social-btn');
+            socialBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                });
+            });
+        });
+    </script>
+</body>
+</html>
