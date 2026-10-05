@@ -1,0 +1,129 @@
+.staff-body {
+  background: var(--soft-cream);
+  min-height: 100vh;
+}
+
+.staff-header {
+  background: var(--white);
+  border-bottom: 1px solid var(--light-border);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.staff-bar {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.staff-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Playfair Display", serif;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.staff-brand img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.staff-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-left: auto;
+}
+
+.staff-nav a {
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.staff-nav a:hover,
+.staff-nav a.active {
+  background: var(--mint);
+  color: var(--text-dark);
+}
+
+.staff-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.staff-role {
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--mint);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.staff-logout {
+  padding: 0.55rem 1.2rem;
+  font-size: 0.85rem;
+}
+
+.staff-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+.staff-main h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 2.2rem;
+  margin: 0 0 6px;
+}
+
+.staff-sub {
+  margin: 0 0 28px;
+  color: rgba(30, 41, 34, 0.75);
+}
+
+.staff-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.staff-card {
+  padding: 24px;
+  border-radius: 20px;
+  background: var(--white);
+  border: 1px solid var(--light-border);
+  box-shadow: 0 10px 25px rgba(24, 36, 27, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.staff-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.staff-card h3 {
+  margin: 0 0 6px;
+  font-family: "Playfair Display", serif;
+}
+
+.staff-card p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: rgba(30, 41, 34, 0.7);
+}

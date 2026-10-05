@@ -29,10 +29,6 @@
           <a href="{{ route('menu') }}" class="{{ request()->routeIs('menu') ? 'active' : '' }}">Menu</a>
           <a href="{{ route('contact') }}" class="{{ request()->routeIs('contact') ? 'active' : '' }}">Contact</a>
         </div>
-        <div class="nav-actions">
-          <button class="btn btn-ghost">Log In</button>
-          <button class="btn btn-primary">Sign Up</button>
-        </div>
       </nav>
     </header>
 

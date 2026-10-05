@@ -1,0 +1,151 @@
+.login-section {
+  padding: 64px 0 88px;
+  background: linear-gradient(180deg, var(--soft-cream), var(--mint));
+}
+
+.login-card {
+  max-width: 860px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-radius: 28px;
+  overflow: hidden;
+  background: var(--white);
+  border: 1px solid var(--light-border);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Form side */
+.login-form-side {
+  padding: 40px 40px 44px;
+}
+
+.login-avatar {
+  width: 56px;
+  height: 56px;
+  margin-bottom: 18px;
+  border-radius: 50%;
+  background: var(--primary-green);
+  color: var(--white);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 10px 20px var(--shadow);
+}
+
+.login-avatar svg {
+  width: 30px;
+  height: 30px;
+}
+
+.login-form-side h2 {
+  margin: 4px 0 22px;
+  font-size: 1.8rem;
+  line-height: 1.2;
+}
+
+.login-form label {
+  display: block;
+  margin: 14px 0 6px 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.login-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 48px;
+  padding: 0 18px;
+  border: 1.5px solid var(--light-border);
+  border-radius: 999px;
+  background: var(--soft-cream);
+  color: var(--primary-green);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.login-field svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.login-field input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--text-dark);
+}
+
+.login-field input::placeholder {
+  color: rgba(30, 41, 34, 0.45);
+}
+
+.login-field:focus-within {
+  background: var(--white);
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 4px var(--shadow);
+}
+
+.login-btn {
+  width: 100%;
+  margin-top: 24px;
+}
+
+.login-message {
+  margin: 0 0 4px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: var(--mint);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Welcome side */
+.login-welcome-side {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: var(--white);
+  background:
+    linear-gradient(160deg, rgba(24, 36, 27, 0.55), rgba(24, 36, 27, 0.9)),
+    url('../images/backgroundhomepage.jpg') center/cover no-repeat;
+}
+
+.login-welcome-side h1 {
+  margin: 4px 0 8px;
+  font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+  line-height: 1.05;
+}
+
+.login-welcome-side p:last-child {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 760px) {
+  .login-card {
+    grid-template-columns: 1fr;
+  }
+
+  .login-welcome-side {
+    order: -1;
+    min-height: 200px;
+    padding: 28px;
+  }
+
+  .login-form-side {
+    padding: 32px 24px 36px;
+  }
+}
+
+.login-avatar {
+ margin-left:auto !important;
+ margin-right:auto !important;
+ margin-bottom: 28px !important;
+}
