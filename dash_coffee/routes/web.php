@@ -44,12 +44,15 @@ Route::middleware('auth')->prefix('staff')->group(function () {
     Route::post('/logout', [StaffAuthController::class, 'logout'])->name('logout');
 
     Route::view('/dashboard', 'staff.dashboard')->name('staff.dashboard');
-    Route::view('/orders', 'staff.placeholder', ['title' => 'Orders'])->name('staff.orders');
-    Route::view('/inventory', 'staff.placeholder', ['title' => 'Inventory'])->name('staff.inventory');
+    Route::view('/orders', 'staff.orders')->name('staff.orders');
+    Route::view('/inventory', 'staff.inventory')->name('staff.inventory');
 
     // Owner only
     Route::middleware(OwnerOnly::class)->group(function () {
-        Route::view('/sales', 'staff.placeholder', ['title' => 'Sales Report'])->name('staff.sales');
-        Route::view('/accounts', 'staff.placeholder', ['title' => 'Staff Accounts'])->name('staff.accounts');
+        Route::view('/menu', 'staff.menu')->name('staff.menu');
+        Route::view('/sales', 'staff.sales')->name('staff.sales');
+        Route::get('/accounts', fn () => view('staff.accounts', [
+            'users' => \App\Models\User::orderBy('id')->get(),
+        ]))->name('staff.accounts');
     });
 });

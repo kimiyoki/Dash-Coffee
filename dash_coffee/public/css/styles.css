@@ -900,3 +900,137 @@ p {
 .nav-links a.btn::after {
     display: none;
 }
+
+.navbar {
+  position: relative;
+}
+
+.nav-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  margin-left: auto;
+  padding: 10px;
+  background: transparent;
+  border: 0;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--text-dark);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.nav-toggle.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+.navbar .nav-links {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 24px;
+  min-width: 240px;
+  margin: 8px 0 0;
+  padding: 12px;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 4px;
+  background: var(--white);
+  border: 1px solid var(--light-border);
+  border-radius: 20px;
+  box-shadow: var(--shadow-lg);
+  z-index: 100;
+}
+
+.navbar .nav-links.open {
+  display: flex;
+}
+
+.navbar .nav-links a {
+  padding: 10px 14px;
+  border-radius: 12px;
+}
+
+.navbar .nav-links a::after {
+  display: none;
+}
+
+.navbar .nav-links a:hover,
+.navbar .nav-links a.active {
+  background: var(--mint);
+}
+
+.navbar .nav-links a.btn {
+  margin-top: 6px;
+  justify-content: center;
+  text-align: center;
+  color: var(--white);
+}
+
+.navbar .nav-links a.btn:hover {
+  background: var(--primary-green);
+}
+
+/* Hero: plays when the page loads */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-copy > * {
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards;
+}
+.hero-copy > *:nth-child(1) { animation-delay: 0.1s; }
+.hero-copy > *:nth-child(2) { animation-delay: 0.25s; }
+.hero-copy > *:nth-child(3) { animation-delay: 0.4s; }
+.hero-copy > *:nth-child(4) { animation-delay: 0.55s; }
+
+.hero-card {
+  opacity: 0;
+  animation: fadeUp 0.9s ease 0.5s forwards;
+}
+
+/* Everything else: plays when scrolled into view */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hover lift on cards */
+.product-card,
+.review-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.product-card:hover,
+.review-card:hover {
+  transform: translateY(-6px);
+}
+
+/* Respect people who turn animations off */
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .hero-copy > *, .hero-card {
+    opacity: 1;
+    transform: none;
+    animation: none;
+    transition: none;
+  }
+}
+
+body:not(.staff-body) {
+    animation:fadeUp 0.7s ease;
+}
