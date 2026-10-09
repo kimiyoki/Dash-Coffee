@@ -25,7 +25,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  font-family: "Playfair Display", serif;
+  font-family: "Source Sans 3", sans-serif;
   font-weight: 800;
   letter-spacing: 0.04em;
 }
@@ -87,7 +87,7 @@
 }
 
 .staff-main h1 {
-  font-family: "Playfair Display", serif;
+  font-family: "Source Sans 3", sans-serif;
   font-size: 2.2rem;
   margin: 0 0 6px;
 }
@@ -119,7 +119,7 @@
 
 .staff-card h3 {
   margin: 0 0 6px;
-  font-family: "Playfair Display", serif;
+  font-family: "Source Sans 3", sans-serif;
 }
 
 .staff-card p {
@@ -170,7 +170,7 @@
 
 .welcome-box h2 {
   margin: 0 0 6px;
-  font-family: "Playfair Display", serif;
+  font-family: "Source Sans 3", sans-serif;
   font-size: 2rem;
 }
 

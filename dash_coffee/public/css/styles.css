@@ -22,7 +22,7 @@ html {
 
 body {
     margin: 0;
-    font-family: "Inter", sans-serif;
+    font-family: "Source Sans 3", sans-serif;
     background: var(--white);
     color: var(--text-dark);
     line-height: 1.6;
@@ -73,7 +73,7 @@ h1,
 h2,
 h3,
 .brand-text {
-    font-family: "Playfair Display", serif;
+    font-family: "Source Sans 3", sans-serif;
     margin: 0;
 }
 

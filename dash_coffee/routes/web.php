@@ -3,6 +3,11 @@
 use App\Http\Controllers\StaffAuthController;
 use App\Http\Middleware\OwnerOnly;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\MenuController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,14 +48,28 @@ Route::post('/staff/login', [StaffAuthController::class, 'login'])
 Route::middleware('auth')->prefix('staff')->group(function () {
     Route::post('/logout', [StaffAuthController::class, 'logout'])->name('logout');
 
-    Route::view('/dashboard', 'staff.dashboard')->name('staff.dashboard');
-    Route::view('/orders', 'staff.orders')->name('staff.orders');
-    Route::view('/inventory', 'staff.inventory')->name('staff.inventory');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('staff.dashboard');
+
+    Route::get('/orders', [OrderController::class, 'create'])->name('staff.orders');
+    Route::post('/orders', [OrderController::class, 'store'])->name('staff.orders.store');
+    Route::get('/orders/history', [OrderController::class, 'history'])->name('staff.history');
+    Route::get('/orders/{order}', [OrderController::class, 'receipt'])->name('staff.receipt');
+
+    Route::get('/inventory', [InventoryController::class, 'index'])->name('staff.inventory');
+    Route::post('/inventory', [InventoryController::class, 'store'])->name('staff.inventory.store');
+    Route::post('/inventory/adjust', [InventoryController::class, 'adjust'])->name('staff.inventory.adjust');
 
     // Owner only
     Route::middleware(OwnerOnly::class)->group(function () {
-        Route::view('/menu', 'staff.menu')->name('staff.menu');
-        Route::view('/sales', 'staff.sales')->name('staff.sales');
+        Route::get('/menu', [MenuController::class, 'index'])->name('staff.menu');
+        Route::post('/menu', [MenuController::class, 'store'])->name('staff.menu.store');
+        Route::patch('/menu/{product}', [MenuController::class, 'status'])->name('staff.menu.status');
+        Route::delete('/menu/{product}', [MenuController::class, 'destroy'])->name('staff.menu.destroy');
+
+        Route::get('/sales', [ReportController::class, 'sales'])->name('staff.sales');
+        Route::get('/sales/export', [ReportController::class, 'export'])->name('staff.sales.export');
+        
+
         Route::get('/accounts', fn () => view('staff.accounts', [
             'users' => \App\Models\User::orderBy('id')->get(),
         ]))->name('staff.accounts');

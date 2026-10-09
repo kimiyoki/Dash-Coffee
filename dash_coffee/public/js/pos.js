@@ -16,3 +16,23 @@ if (pay && ref) {
         if (cash) ref.value = '';
     });
 }
+
+(function () {
+  var toggle = document.getElementById('posToggle');
+  var side = document.querySelector('.pos-side');
+  var backdrop = document.getElementById('posBackdrop');
+  if (!toggle || !side) return;
+
+  function setMenu(open) {
+    side.classList.toggle('open', open);
+    toggle.classList.toggle('open', open);
+    backdrop.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', open);
+  }
+
+  toggle.addEventListener('click', function () { setMenu(!side.classList.contains('open')); });
+  backdrop.addEventListener('click', function () { setMenu(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
+})();
+
+
