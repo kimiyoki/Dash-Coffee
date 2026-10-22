@@ -407,7 +407,7 @@ p {
     flex-wrap: wrap;
     justify-content: center;
     gap: 12px;
-    margin-bottom: 28px;
+    margin-bottom: 110px;
 }
 
 .filter-btn {
@@ -432,7 +432,7 @@ p {
 .menu-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 18px;
+    gap: 86px 18px;
 }
 
 .menu-card {
@@ -1033,4 +1033,119 @@ p {
 
 body:not(.staff-body) {
     animation:fadeUp 0.7s ease;
+}
+
+/* Hidden image na lalabas pag hover */
+.menu-card {
+    position: relative;
+}
+
+/* Nakadikit sa taas ng card, hindi tutulak ng layout */
+/* Container: laging nandiyan, walang opacity/clip na */
+.menu-card-hover-image {
+    position: absolute;
+    left: -1px;
+    right: -1px;
+    bottom: 100%;
+    margin-bottom: -1px;
+    height: 120px;
+    border-radius: 20px 20px 0 0;
+    overflow: hidden;
+    background: transparent;
+    border: none;
+    pointer-events: none;
+    z-index: 20;
+}
+
+/* Image: nakatago muna, aangat at magfa-fade pagkatapos ng text */
+.menu-card-hover-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center 30%;
+    display: block;
+    opacity: 0;
+    clip-path: inset(100% 0 0 0);
+    transition: clip-path 0.4s ease, opacity 0.9s ease;
+}
+
+
+
+
+
+
+.menu-card-hover-desc {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+     padding: 10px 12px;   /* mas mataas na padding para kita yung fade mwehehehhehe */
+     font-family: "Inter", sans-serif;
+    font-size: 11.7px;
+    line-height: 1.15;
+    font-weight: bold;  
+
+
+
+
+
+
+
+
+
+
+
+
+
+    color: #5e6868;
+
+
+
+
+
+
+
+
+
+
+    background: linear-gradient(to top,
+    rgba(255, 255, 255, 0.48) 0%,
+    rgba(255, 255, 255, 0.2) 55%,
+    rgba(255, 255, 255, 0) 100%);
+      /* drop shadow ng text */
+    filter: drop-shadow(0 -4px 10px rgba(47, 46, 72, 0.60));   /* drop shadow ng fade */
+        opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Hover */
+.menu-card:hover {
+    z-index: 20;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.menu-card:hover .menu-card-hover-desc {
+    opacity: 1;
+}
+
+.menu-card:hover .menu-card-hover-image img {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    transition-delay: 0.3s;   /* aangat pagkatapos lumabas ng text */
 }

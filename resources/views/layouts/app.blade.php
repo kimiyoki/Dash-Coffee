@@ -10,19 +10,19 @@
     <title>@yield('title', 'DashCoffee | Your Daily Coffee Moment')</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Josefin+Sans:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
   </head>
   <body>
     <header class="site-header">
       <nav class="navbar container" aria-label="Main navigation">
-      <a href="{{ route('home') }}" 
-        aria-label="DashCoffee brand" 
-        class="brand {{ request()->routeIs('home') ? 'active' : '' }}" 
-        style="text-decoration: none; color: inherit;">
-          <img src="{{ asset('images/dashcoffee-logo.jpg') }}" alt="DashCoffee logo" class="brand-logo" />
+        <a href="{{ route('home') }}"
+          aria-label="DashCoffee brand"
+          class="brand {{ request()->routeIs('home') ? 'active' : '' }}"
+          style="text-decoration: none; color: inherit;">
+          <img src="{{ asset('images/dashcoffee-logo.png') }}" alt="DashCoffee logo" class="brand-logo" />
           <span class="brand-text">DASH COFFEE</span>
-      </a>
+        </a>
         <div class="nav-links" id="navLinks" aria-label="Navigation links">
           <a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'active' : '' }}">Home</a>
           <a href="{{ route('about') }}" class="{{ request()->routeIs('about') ? 'active' : '' }}">About</a>
@@ -58,9 +58,9 @@
         <div class="footer-meta">
           <p>© 2026 DashCoffee</p>
           <div class="legal-links">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms</a>
-          </div>
+  <a href="javascript:void(0)">Privacy Policy</a>
+  <a href="javascript:void(0)">Terms</a>
+</div>
         </div>
       </div>
     </footer>
@@ -80,8 +80,10 @@
       navToggle.addEventListener('click', () => setNav(!navLinks.classList.contains('open')));
 
       document.addEventListener('click', (event) => {
-        if (!navLinks.contains(event.target) && !navToggle.contains(event.target)) setNav(false);
-      });
+  if (event.target.closest('.site-footer')) return;
+  
+  if (!navLinks.contains(event.target) && !navToggle.contains(event.target)) setNav(false);
+});
 
         document.addEventListener('keydown', (event) => {
           if (event.key === 'Escape') setNav(false);
