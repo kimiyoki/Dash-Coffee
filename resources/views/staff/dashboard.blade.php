@@ -71,20 +71,37 @@
         <div class="empty">No orders yet</div>
       @else
         <div class="rp-scroll">
-          <table class="rp-table">
-            <tr><th>Order #</th><th>Date / time</th><th>Items</th><th>Payment</th><th class="num">Total</th><th></th></tr>
-            @foreach ($recent as $o)
-              <tr>
+<div class="rp-scroll">
+    <table class="rp-table">
+        <tr>
+            <th>Order #</th>
+            <th>Date / time</th>
+            <th>Items</th>
+            <th>Payment</th>
+            <th class="num">Total</th>
+            <th></th>
+        </tr>
+
+        @foreach ($recent as $o)
+
+            {{-- REPLACE THE EXISTING ORDER ROW HERE --}}
+            <tr
+                onclick="window.location.href='{{ route('staff.receipt', $o) }}'"
+                style="cursor: pointer;"
+            >
                 <td><strong>#{{ $o->id }}</strong></td>
                 <td>{{ $o->created_at->format('M d, g:i A') }}</td>
                 <td>{{ $o->items->map(fn ($i) => $i->qty . '× ' . $i->name)->implode(', ') }}</td>
                 <td>{{ $o->payment_method }}</td>
                 <td class="num key">₱{{ number_format($o->total, 2) }}</td>
-                <td><a href="{{ route('staff.receipt', $o) }}">View</a></td>
-              </tr>
-            @endforeach
-          </table>
-        </div>
+                <td class="receipt-action">
+                    <a href="{{ route('staff.receipt', $o) }}">View</a>
+                </td>
+            </tr>
+
+        @endforeach
+    </table>
+</div>
       @endif
       <p class="more"><a href="{{ route('staff.history') }}">View all orders &rarr;</a></p>
     </div>

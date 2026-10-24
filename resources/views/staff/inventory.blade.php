@@ -66,9 +66,9 @@
 
     {{-- Row 1: ingredient table + Add ingredient --}}
     <div class="inv-row">
-        <div class="rp-card">
+        <div class="rp-card inv-stock-table-card">
             <div class="rp-scroll">
-                <table class="rp-table">
+                <table class="rp-table inv-stock-table">
                     <tr>
                         <th>Ingredient</th>
                         <th class="num">Stock</th>

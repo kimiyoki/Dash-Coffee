@@ -171,4 +171,22 @@
             filter();
         });
     </script>
+        @if (!empty($receipt))
+        <div class="receipt-modal" id="receiptModal">
+            <div class="receipt-box">
+                @include('staff._receipt', ['order' => $receipt])
+                <div class="receipt-actions no-print">
+                    <button type="button" class="btn btn-primary" onclick="window.print()">Print Receipt</button>
+                    <button type="button" class="btn btn-soft" id="receiptClose">New Order</button>
+                </div>
+            </div>
+        </div>
+        <script>
+            var rm = document.getElementById('receiptModal');
+            function closeRm() { if (rm) rm.remove(); }
+            document.getElementById('receiptClose').onclick = closeRm;
+            rm.addEventListener('click', function (e) { if (e.target === rm) closeRm(); });
+            document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeRm(); });
+        </script>
+    @endif
 @endsection

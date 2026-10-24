@@ -1,7 +1,7 @@
 @extends('layouts.staff')
 @section('title', 'Receipt #' . $order->id)
 @section('content')
-  <div class="receipt">
+  <div class="receipt-box"> <!-- Changed from .receipt to .receipt-box -->
     <h2>DASH COFFEE</h2>
     <p class="center">Eastwood Residences, Rodriguez, Rizal</p>
     <hr />
@@ -21,10 +21,49 @@
     <hr />
     <p class="center">Thank you! Take a dash, stay a while.</p>
   </div>
+  
   <div class="receipt-actions no-print">
     <button class="btn btn-primary" onclick="window.print()">Print Receipt</button>
     <a class="btn btn-soft" href="{{ route('staff.orders') }}">New Order</a>
     <a class="btn btn-soft" href="{{ route('staff.history') }}">Order History</a>
   </div>
+  
   @if (request('print'))<script>window.addEventListener('load', function () { window.print(); });</script>@endif
+
+  <style>
+    /* Screen styling */
+    .receipt-box {
+        max-width: 300px;
+        margin: 20px auto;
+        font-family: monospace;
+        padding: 10px;
+        background: #fff;
+    }
+
+    /* Print styling specifically for small receipt rolls */
+    @media print {
+        @page {
+            size: 80mm 200mm;
+            margin: 0;
+        }
+        body {
+            margin: 0;
+            background: #fff;
+        }
+        body * {
+            visibility: hidden;
+        }
+        .receipt-box, .receipt-box * {
+            visibility: visible;
+        }
+        .receipt-box {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 78mm;
+            margin: 0;
+            padding: 2mm;
+        }
+    }
+</style>
 @endsection

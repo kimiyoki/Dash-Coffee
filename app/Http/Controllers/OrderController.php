@@ -15,6 +15,7 @@ class OrderController extends Controller
     {
         return view('staff.orders', [
             'products' => Product::with('ingredients')->where('status', '!=', 'hidden')->orderBy('name')->get(),
+            'receipt' => session('receipt_id') ? Order::with('items', 'user')->find(session('receipt_id')) : null,
         ]);
     }
 
@@ -100,7 +101,7 @@ class OrderController extends Controller
             return $order;
         });
 
-        return redirect()->route('staff.receipt', $order);
+        return redirect()->route('staff.orders')->with('receipt_id', $order->id);
     }
 
     public function history()

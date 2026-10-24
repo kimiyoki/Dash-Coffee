@@ -1,0 +1,578 @@
+/* =====================================================================
+   DashCoffee — MOBILE LAYOUT (CSS media queries)
+   Every rule is inside @media (max-width: ...), so the DESKTOP layout
+   is not changed at all. Link this file LAST in both layouts.
+   Based on the mobile wireframes: header + hamburger, hero, 2-column
+   product grids, stacked sections, full-width buttons, scrolling tabs.
+   ===================================================================== */
+
+@media (max-width: 768px) {
+
+  html, body { overflow-x: hidden; }
+  img { max-width: 100%; }
+
+  /* Touch-friendly controls (16px stops phones from zooming into inputs) */
+  .btn { min-height: 44px; }
+  input, select, textarea { font-size: 16px; }
+
+  /* ================= PUBLIC WEBSITE ================= */
+
+  .container { width: min(100% - 32px, 1160px); }
+  .section { padding: 44px 0; }
+  .section-heading h2 { font-size: 1.6rem; line-height: 1.2; }
+
+  /* Header: logo + brand on the left, round hamburger on the right */
+  .site-header .navbar { flex-wrap: nowrap; justify-content: space-between; padding: 12px 0; gap: 10px; }
+  .brand-logo { width: 42px; height: 42px; }
+  .brand-text { font-size: 0.95rem; letter-spacing: 0.1em; }
+  .nav-toggle { width: 44px; height: 44px; margin-left: auto; padding: 11px; border: 2px solid var(--text-dark); border-radius: 50%; }
+  .nav-toggle.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  .nav-toggle.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+  .navbar .nav-links { left: 0; right: 0; width: auto; min-width: 0; margin-top: 10px; }
+  .navbar .nav-links a { padding: 14px 16px; font-size: 1rem; }
+
+  /* HOME: hero, signature card, 2-column featured products */
+  .hero { padding: 34px 0 28px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 20px; }
+  .hero h1 { font-size: clamp(2rem, 9vw, 2.6rem); line-height: 1.1; }
+  .hero .btn-large, .hero-copy .btn { width: 100%; justify-content: center; text-align: center; }
+  .hero-card { width: 100%; }
+  .featured-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .product-card { padding: 12px; border-radius: 16px; }
+  .product-card h3 { font-size: 0.95rem; }
+  .section-cta .btn { width: 100%; justify-content: center; }
+  .review-card { padding: 20px 18px; }
+
+  /* ABOUT: picture on top, text, full-width button, 3 value cards in a row */
+  .about-inner { grid-template-columns: 1fr; gap: 24px; }
+  .about-image-wrap { min-height: 0; }
+  .about-visual { min-height: 220px; }
+  .about-copy .btn { width: 100%; justify-content: center; }
+  .value-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .value-card { padding: 14px 6px; text-align: center; }
+  .value-card h3 { font-size: 0.9rem; }
+  .value-card p { font-size: 0.72rem; line-height: 1.35; }
+  .value-icon { width: 44px; height: 44px; margin: 0 auto 8px; }
+
+  /* MENU: filter tabs scroll sideways, 2-column product grid */
+  .filter-bar { display: flex; flex-wrap: nowrap; justify-content: flex-start; gap: 8px; overflow-x: auto; padding-bottom: 8px; -webkit-overflow-scrolling: touch; scrollbar-width: thin; }
+  .filter-btn { flex: 0 0 auto; white-space: nowrap; }
+  .menu-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .menu-card { padding: 14px 12px; }
+  .menu-card-name { font-size: 0.9rem; }
+  .menu-card-top { flex-direction: column; align-items: flex-start; gap: 2px; }
+  .addon-banner { padding: 16px; }
+
+  /* CONTACT: location, map, details and feedback stack in one column */
+  .location-grid, .contact-grid { grid-template-columns: 1fr; gap: 20px; }
+  .location-copy .btn, .contact-copy .btn { width: 100%; justify-content: center; }
+  .map-card { min-height: 190px; }
+  .feedback-form textarea { min-height: 150px; }
+  .form-footer { flex-direction: column; align-items: stretch; gap: 10px; }
+  .form-footer .btn { width: 100%; }
+
+  /* Footer */
+  .footer-inner { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 12px; }
+  .footer-links, .footer-meta { justify-content: center; flex-wrap: wrap; }
+
+  /* ================= STAFF SYSTEM (POS) ================= */
+
+  .pos-main { padding: 76px 14px 32px !important; }
+  .pos-title { font-size: 1.4rem; }
+  .welcome-box h2 { font-size: 1.5rem; }
+
+  /* Title banner: title left, date + live clock box right */
+  .pos-main .rp-head { flex-wrap: nowrap; gap: 10px; padding: 14px 16px; }
+  .pos-main .rp-head > :first-child { flex: 1 1 auto; min-width: 0; }
+  .pos-main .rp-head > h1,
+  .pos-main .rp-head > h2,
+  .pos-main .rp-head > h3,
+  .pos-main .rp-head > .pos-title,
+  .pos-main .rp-head > :first-child h1,
+  .pos-main .rp-head > :first-child h2,
+  .pos-main .rp-head > :first-child h3,
+  .pos-main .rp-head > :first-child .pos-title {
+    font-size: clamp(1rem, 4.5vw, 1.25rem) !important;
+    line-height: 1.15;
+    white-space: nowrap;
+  }
+  .rp-clock { min-width: 0; padding: 8px 12px; }
+  .rp-clock small { font-size: 0.66rem; }
+  .rp-clock strong { font-size: 1rem; }
+
+  /* Tabs / filters scroll sideways instead of wrapping */
+  .tabs { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 6px; }
+  .tab { flex: 0 0 auto; white-space: nowrap; }
+  .toolbar, .toolbar-right { flex-direction: column; align-items: stretch; width: 100%; }
+  .search, .inv-bar .search { width: 100%; min-width: 0; }
+  .inv-bar, .rp-bar { flex-direction: column; align-items: stretch; }
+  .inv-bar select, .rp-bar select { width: 100% !important; }
+  .inv-bar:has(input[type="date"]) { flex-direction: row !important; flex-wrap: wrap; align-items: center; gap: 6px; }
+  .inv-bar:has(input[type="date"]) > .search { flex: 0 0 100%; width: 100%; }
+  .inv-bar:has(input[type="date"]) > :has(input[type="date"]) {
+    display: flex;
+    flex: 1 1 0;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+    min-width: 0;
+    white-space: nowrap;
+  }
+  .inv-bar:has(input[type="date"]) input[type="date"] { width: 100%; min-width: 0; padding: 8px 6px; font-size: 14px; }
+  .inv-bar:has(input[type="date"]) button,
+  .inv-bar:has(input[type="date"]) .btn,
+  .inv-bar:has(input[type="date"]) input[type="submit"] { flex: 0 0 auto; width: auto; min-height: 44px; white-space: nowrap; padding: 10px 14px; font-size: 0.9rem; }
+  .presets { flex-wrap: wrap; gap: 10px 14px; }
+
+  /* Mobile tables: keep every column visible without inner horizontal scrolling */
+  .rp-scroll, .tbl {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: visible !important;
+    overflow-y: visible;
+  }
+
+  .rp-table {
+    width: 100% !important;
+    min-width: 0 !important;
+    table-layout: fixed;
+    border-collapse: collapse;
+  }
+
+  .rp-table th, .rp-table td {
+    min-width: 0 !important;
+    padding: 8px 4px;
+    font-size: 0.72rem;
+    line-height: 1.35;
+    white-space: normal !important;
+    overflow-wrap: anywhere;
+    word-break: normal;
+    vertical-align: top;
+  }
+
+  .tbl-head, .tbl-row {
+    min-width: 0 !important;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .tbl-head > *, .tbl-row > * {
+    min-width: 0;
+    white-space: normal !important;
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+
+  .rp-table a, .tbl a, .tbl button, .tbl .btn {
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    padding: 5px 6px;
+    font-size: 0.72rem;
+  }
+
+  /* Dashboard: small stat cards side by side */
+  .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 10px; }
+  .stat strong { font-size: 1.5rem; }
+  .recent-row { min-width: 0 !important; }
+
+  /* Sales report */
+  .rp-kpis { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 8px; }
+  .rp-kpi.main { grid-column: 1 / -1 !important; grid-row: auto !important; padding: 18px !important; }
+  .rp-kpi:not(.main) { min-width: 0; padding: 10px 6px; }
+  .rp-kpi:not(.main) strong { font-size: 1rem; }
+  .rp-kpi.main strong { font-size: 2.4rem !important; }
+  .rp-grid.two, .rp-grid.wide, .charts-row, .charts-row.two { grid-template-columns: 1fr !important; }
+  .rp-chart, .chart-box { height: 230px; }
+  .rp-downloads { justify-content: stretch; flex-direction: column; }
+  .rp-downloads .btn { width: 100%; text-align: center; }
+
+  /* Order entry: 2-column product grid, order panel below */
+  .split-layout { grid-template-columns: 1fr !important; }
+  .prod-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 10px; }
+  .tile-img { height: 84px; }
+  .prod-tile { padding: 10px; }
+  .order-panel { position: static !important; min-height: 0 !important; }
+  .receipt-modal { padding: 10px; }
+  .receipt-box { padding: 16px; }
+
+  /* Manage menu */
+  .menu-layout { grid-template-columns: 1fr !important; }
+  .prod-row { grid-template-columns: 1fr; }
+  .recipe-row { grid-template-columns: 1fr; }
+  .img-pick { flex-direction: column; align-items: flex-start; }
+
+  /* Inventory: four small summary cards in a row, panels stack */
+  .inv-cards { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; gap: 8px; }
+  .inv-card { padding: 10px 8px; border-radius: 14px; }
+  .inv-card small { font-size: 0.56rem; letter-spacing: 0.03em; }
+  .inv-card strong { font-size: 1rem !important; margin: 2px 0 0; }
+  .inv-card em { display: none; }
+  .inv-row, .inv2 { grid-template-columns: 1fr !important; }
+  .inv-row > .card { position: static !important; }
+  .inv-row .actions { flex-wrap: nowrap; }
+  .ir-sum { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .ir-sum div { padding: 10px 12px; }
+  .ir-sum small { font-size: 0.58rem; }
+  .ir-sum strong { font-size: 1.15rem; }
+
+  /* Staff accounts */
+}
+
+/* Small phones */
+@media (max-width: 420px) {
+  /* Narrow phones: retain all columns and wrap long cell content */
+  .rp-table th, .rp-table td {
+    padding: 7px 3px;
+    font-size: 0.66rem;
+  }
+
+  .hero h1 { font-size: 1.9rem; }
+  .menu-card-price { font-size: 0.85rem; }
+  .value-card p { display: none; }
+  .inv-card small { font-size: 0.5rem; }
+  .pos-main .rp-head { flex-direction: row; align-items: center; justify-content: space-between; gap: 8px; }
+  .pos-main .rp-head > :first-child { min-width: 0; }
+  .rp-clock { align-self: auto; flex: 0 0 auto; text-align: center; padding: 7px 9px; }
+}
+
+@media (max-width: 768px) {
+    .rp-table .receipt-action {
+        display: none !important;
+    }
+}
+
+/* Order History only */
+@media (max-width: 768px) {
+    .hist .rp-card {
+        padding: 12px 10px;
+        overflow: visible;
+    }
+
+    .hist .rp-scroll {
+        width: 100%;
+        overflow: visible !important;
+    }
+
+    .hist .rp-table {
+        width: 100% !important;
+        min-width: 0 !important;
+        table-layout: fixed;
+        border-collapse: collapse;
+    }
+
+    /* Keep headings on one line wherever possible */
+    .hist .rp-table th {
+        padding: 8px 2px;
+        font-size: 0.58rem;
+        line-height: 1.2;
+        text-align: left;
+        white-space: normal;
+        overflow-wrap: normal;
+        word-break: normal;
+        vertical-align: middle;
+    }
+
+    .hist .rp-table td {
+        padding: 9px 3px;
+        font-size: 0.68rem;
+        line-height: 1.4;
+        vertical-align: top;
+        white-space: normal !important;
+        overflow-wrap: break-word;
+        word-break: normal;
+    }
+
+    /* Balanced widths for all seven columns */
+    .hist .rp-table th:nth-child(1),
+    .hist .rp-table td:nth-child(1) { width: 10%; }
+
+    .hist .rp-table th:nth-child(2),
+    .hist .rp-table td:nth-child(2) { width: 19%; }
+
+    .hist .rp-table th:nth-child(3),
+    .hist .rp-table td:nth-child(3) { width: 15%; }
+
+    .hist .rp-table th:nth-child(4),
+    .hist .rp-table td:nth-child(4) { width: 12%; }
+
+    .hist .rp-table th:nth-child(5),
+    .hist .rp-table td:nth-child(5) { width: 12%; }
+
+    .hist .rp-table th:nth-child(6),
+    .hist .rp-table td:nth-child(6) { width: 12%; }
+
+    .hist .rp-table th:nth-child(7),
+    .hist .rp-table td:nth-child(7) { width: 20%; }
+
+    /* Keep View and Print beside each other */
+    .hist .row-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        align-items: stretch;
+    }
+
+    .hist .row-actions .btn {
+        display: block;
+        width: 100%;
+        min-width: 0;
+        margin: 0;
+        padding: 7px 2px;
+        box-sizing: border-box;
+        font-size: 0.65rem;
+        line-height: 1.2;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .hist .badge {
+        max-width: 100%;
+        padding: 4px 3px;
+        font-size: 0.6rem;
+        line-height: 1.2;
+        white-space: normal;
+    }
+}
+
+/* Small fixes for Order History — preserve the current table */
+@media (max-width: 768px) {
+
+    /* Put View and Print side by side */
+    .hist .row-actions {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 4px;
+        align-items: center;
+    }
+
+    .hist .row-actions .btn {
+        flex: 1 1 0;
+        width: auto;
+        min-width: 0;
+        margin: 0;
+        padding: 7px 2px;
+        font-size: 0.6rem;
+        line-height: 1.2;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    /* Keep ORDER # on one line */
+    .hist .rp-table th:first-child {
+        white-space: nowrap;
+        font-size: 0.53rem;
+        letter-spacing: -0.2px;
+    }
+
+    /* Make the Completed badge more compact */
+    .hist .badge {
+        padding: 4px 3px;
+        font-size: 0.52rem;
+        line-height: 1.2;
+    }
+}
+
+/* Small fixes for Order History — preserve the current table */
+@media (max-width: 768px) {
+
+    /* Put View and Print side by side */
+    .hist .row-actions {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 4px;
+        align-items: center;
+    }
+
+    .hist .row-actions .btn {
+        flex: 1 1 0;
+        width: auto;
+        min-width: 0;
+        margin: 0;
+        padding: 7px 2px;
+        font-size: 0.6rem;
+        line-height: 1.2;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    /* Keep ORDER # on one line */
+    .hist .rp-table th:first-child {
+        white-space: nowrap;
+        font-size: 0.53rem;
+        letter-spacing: -0.2px;
+    }
+
+    /* Make the Completed badge more compact */
+    .hist .badge {
+        padding: 4px 3px;
+        font-size: 0.52rem;
+        line-height: 1.2;
+    }
+}
+
+/* FINAL OVERRIDES — ORDER HISTORY ONLY */
+@media (max-width: 768px) {
+
+    /* Reduce the excessive row height */
+    .hist .rp-table tbody tr {
+        height: auto !important;
+    }
+
+    .hist .rp-table tbody td {
+        padding-top: 8px !important;
+        padding-bottom: 8px !important;
+    }
+
+    /* Keep View and Print on one line */
+    .hist .rp-table td.row-actions {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 4px !important;
+    }
+
+    .hist .row-actions .btn {
+        width: 100% !important;
+        min-width: 0 !important;
+        padding: 6px 2px !important;
+        margin: 0 !important;
+        font-size: 0.65rem !important;
+        line-height: 1.2 !important;
+    }
+
+    /* Prevent Completed from splitting awkwardly */
+    .hist .badge {
+        display: inline-block !important;
+        font-size: 0.55rem !important;
+        padding: 4px 3px !important;
+        line-height: 1.2 !important;
+        overflow-wrap: normal !important;
+        word-break: normal !important;
+    }
+}
+
+/* FIX ORDER HISTORY ACTION BUTTONS */
+@media (max-width: 768px) {
+
+    /* Restore the Actions cell as a normal table cell */
+    .hist .rp-table td.row-actions {
+        display: table-cell !important;
+        width: 20%;
+        min-width: 65px;
+        vertical-align: middle;
+        white-space: normal !important;
+    }
+
+    /* Make View and Print normal-sized buttons */
+    .hist .rp-table td.row-actions .btn {
+        display: block !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        height: auto !important;
+        min-height: 34px;
+        box-sizing: border-box;
+        margin: 4px 0 !important;
+        padding: 8px 4px !important;
+        font-size: 0.68rem !important;
+        line-height: 1.2 !important;
+        text-align: center;
+        white-space: nowrap !important;
+        border-radius: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hist .rp-table td:nth-child(6) .badge {
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap !important;
+        word-break: keep-all !important;
+        overflow-wrap: normal !important;
+        font-size: 9px !important;
+        line-height: 1.2 !important;
+        padding: 4px 6px !important;
+        max-width: none !important;
+        width: auto !important;
+        border-radius: 20px;
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 768px) {
+    .hist .rp-table td:nth-child(6) .badge {
+        position: relative;
+        left: -5px;
+    }
+}
+
+/* DashCoffee — Inventory Management Ingredients table ONLY.
+   Add this block to the END of your existing mobile.css.
+   Do not replace the whole mobile.css file with this patch. */
+@media (max-width: 768px) {
+  .inv-stock-table-card {
+    min-width: 0;
+    padding: 10px !important;
+  }
+
+  .inv-stock-table-card > .rp-scroll {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .inv-stock-table {
+    width: 100% !important;
+    min-width: 560px !important;
+    table-layout: auto;
+    border-collapse: collapse;
+  }
+
+  .inv-stock-table th,
+  .inv-stock-table td {
+    height: auto !important;
+    padding: 9px 7px !important;
+    font-size: 0.72rem !important;
+    line-height: 1.35 !important;
+    vertical-align: middle !important;
+    white-space: nowrap;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
+  .inv-stock-table td.row-actions {
+    display: table-cell !important;
+    min-width: 150px;
+    white-space: nowrap !important;
+  }
+
+  .inv-stock-table td.row-actions .btn {
+    display: inline-flex !important;
+    width: auto !important;
+    min-width: 0 !important;
+    min-height: 32px !important;
+    height: auto !important;
+    margin: 2px !important;
+    padding: 7px 9px !important;
+    box-sizing: border-box;
+    font-size: 0.68rem !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+    border-radius: 16px;
+  }
+
+  .inv-stock-table td:nth-child(5) .badge {
+    display: inline-block;
+    max-width: none;
+    padding: 5px 8px;
+    font-size: 0.68rem;
+    line-height: 1.2;
+    white-space: nowrap;
+    box-sizing: border-box;
+  }
+}
+
