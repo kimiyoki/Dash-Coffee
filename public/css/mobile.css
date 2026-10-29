@@ -1,89 +1,248 @@
-/* =====================================================================
-   DashCoffee — MOBILE LAYOUT (CSS media queries)
-   Every rule is inside @media (max-width: ...), so the DESKTOP layout
-   is not changed at all. Link this file LAST in both layouts.
-   Based on the mobile wireframes: header + hamburger, hero, 2-column
-   product grids, stacked sections, full-width buttons, scrolling tabs.
-   ===================================================================== */
-
 @media (max-width: 768px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+  img {
+    max-width: 100%;
+  }
 
-  html, body { overflow-x: hidden; }
-  img { max-width: 100%; }
+  /*Touch-friendly control*/
 
-  /* Touch-friendly controls (16px stops phones from zooming into inputs) */
-  .btn { min-height: 44px; }
-  input, select, textarea { font-size: 16px; }
+  .btn {
+    min-height: 44px;
+  }
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
 
-  /* ================= PUBLIC WEBSITE ================= */
+  /* Homepage */
 
-  .container { width: min(100% - 32px, 1160px); }
-  .section { padding: 44px 0; }
-  .section-heading h2 { font-size: 1.6rem; line-height: 1.2; }
+  .container {
+    width: min(100% - 32px, 1160px);
+  }
+  .section {
+    padding: 44px 0;
+  }
+  .section-heading h2 {
+    font-size: 1.6rem;
+    line-height: 1.2;
+  }
 
-  /* Header: logo + brand on the left, round hamburger on the right */
-  .site-header .navbar { flex-wrap: nowrap; justify-content: space-between; padding: 12px 0; gap: 10px; }
-  .brand-logo { width: 42px; height: 42px; }
-  .brand-text { font-size: 0.95rem; letter-spacing: 0.1em; }
-  .nav-toggle { width: 44px; height: 44px; margin-left: auto; padding: 11px; border: 2px solid var(--text-dark); border-radius: 50%; }
-  .nav-toggle.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-  .nav-toggle.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-  .navbar .nav-links { left: 0; right: 0; width: auto; min-width: 0; margin-top: 10px; }
-  .navbar .nav-links a { padding: 14px 16px; font-size: 1rem; }
+  /* Header */
+  .site-header .navbar {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    padding: 12px 0;
+    gap: 10px;
+  }
+  .brand-logo {
+    width: 42px;
+    height: 42px;
+  }
+  .brand-text {
+    font-size: 0.95rem;
+    letter-spacing: 0.1em;
+  }
+  .nav-toggle {
+    width: 44px;
+    height: 44px;
+    margin-left: auto;
+    padding: 11px;
+    border: 2px solid var(--text-dark);
+    border-radius: 50%;
+  }
+  .nav-toggle.open span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .nav-toggle.open span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  .navbar .nav-links {
+    left: 0;
+    right: 0;
+    width: auto;
+    min-width: 0;
+    margin-top: 10px;
+  }
+  .navbar .nav-links a {
+    padding: 14px 16px;
+    font-size: 1rem;
+  }
 
-  /* HOME: hero, signature card, 2-column featured products */
-  .hero { padding: 34px 0 28px; }
-  .hero-inner { grid-template-columns: 1fr; gap: 20px; }
-  .hero h1 { font-size: clamp(2rem, 9vw, 2.6rem); line-height: 1.1; }
-  .hero .btn-large, .hero-copy .btn { width: 100%; justify-content: center; text-align: center; }
-  .hero-card { width: 100%; }
-  .featured-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-  .product-card { padding: 12px; border-radius: 16px; }
-  .product-card h3 { font-size: 0.95rem; }
-  .section-cta .btn { width: 100%; justify-content: center; }
-  .review-card { padding: 20px 18px; }
+  /* HOME */
+  .hero {
+    padding: 34px 0 28px;
+  }
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .hero h1 {
+    font-size: clamp(2rem, 9vw, 2.6rem);
+    line-height: 1.1;
+  }
+  .hero .btn-large,
+  .hero-copy .btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+  .hero-card {
+    width: 100%;
+  }
+  .featured-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .product-card {
+    padding: 12px;
+    border-radius: 16px;
+  }
+  .product-card h3 {
+    font-size: 0.95rem;
+  }
+  .section-cta .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .review-card {
+    padding: 20px 18px;
+  }
 
-  /* ABOUT: picture on top, text, full-width button, 3 value cards in a row */
-  .about-inner { grid-template-columns: 1fr; gap: 24px; }
-  .about-image-wrap { min-height: 0; }
-  .about-visual { min-height: 220px; }
-  .about-copy .btn { width: 100%; justify-content: center; }
-  .value-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
-  .value-card { padding: 14px 6px; text-align: center; }
-  .value-card h3 { font-size: 0.9rem; }
-  .value-card p { font-size: 0.72rem; line-height: 1.35; }
-  .value-icon { width: 44px; height: 44px; margin: 0 auto 8px; }
+  /* ABOUT */
+  .about-inner {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .about-image-wrap {
+    min-height: 0;
+  }
+  .about-visual {
+    min-height: 220px;
+  }
+  .about-copy .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .value-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .value-card {
+    padding: 14px 6px;
+    text-align: center;
+  }
+  .value-card h3 {
+    font-size: 0.9rem;
+  }
+  .value-card p {
+    font-size: 0.72rem;
+    line-height: 1.35;
+  }
+  .value-icon {
+    width: 44px;
+    height: 44px;
+    margin: 0 auto 8px;
+  }
 
-  /* MENU: filter tabs scroll sideways, 2-column product grid */
-  .filter-bar { display: flex; flex-wrap: nowrap; justify-content: flex-start; gap: 8px; overflow-x: auto; padding-bottom: 8px; -webkit-overflow-scrolling: touch; scrollbar-width: thin; }
-  .filter-btn { flex: 0 0 auto; white-space: nowrap; }
-  .menu-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-  .menu-card { padding: 14px 12px; }
-  .menu-card-name { font-size: 0.9rem; }
-  .menu-card-top { flex-direction: column; align-items: flex-start; gap: 2px; }
-  .addon-banner { padding: 16px; }
+  /* MENU */
+  .filter-bar {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+  .filter-btn {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+  .menu-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .menu-card {
+    padding: 14px 12px;
+  }
+  .menu-card-name {
+    font-size: 0.9rem;
+  }
+  .menu-card-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+  .addon-banner {
+    padding: 16px;
+  }
 
-  /* CONTACT: location, map, details and feedback stack in one column */
-  .location-grid, .contact-grid { grid-template-columns: 1fr; gap: 20px; }
-  .location-copy .btn, .contact-copy .btn { width: 100%; justify-content: center; }
-  .map-card { min-height: 190px; }
-  .feedback-form textarea { min-height: 150px; }
-  .form-footer { flex-direction: column; align-items: stretch; gap: 10px; }
-  .form-footer .btn { width: 100%; }
+  /* CONTACT */
+  .location-grid,
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .location-copy .btn,
+  .contact-copy .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .map-card {
+    min-height: 190px;
+  }
+  .feedback-form textarea {
+    min-height: 150px;
+  }
+  .form-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .form-footer .btn {
+    width: 100%;
+  }
 
   /* Footer */
-  .footer-inner { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 12px; }
-  .footer-links, .footer-meta { justify-content: center; flex-wrap: wrap; }
+  .footer-inner {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    gap: 12px;
+  }
+  .footer-links,
+  .footer-meta {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 
-  /* ================= STAFF SYSTEM (POS) ================= */
+  /* STAFF SYSTEM (POS)  */
 
-  .pos-main { padding: 76px 14px 32px !important; }
-  .pos-title { font-size: 1.4rem; }
-  .welcome-box h2 { font-size: 1.5rem; }
+  .pos-main {
+    padding: 76px 14px 32px !important;
+  }
+  .pos-title {
+    font-size: 1.4rem;
+  }
+  .welcome-box h2 {
+    font-size: 1.5rem;
+  }
 
-  /* Title banner: title left, date + live clock box right */
-  .pos-main .rp-head { flex-wrap: nowrap; gap: 10px; padding: 14px 16px; }
-  .pos-main .rp-head > :first-child { flex: 1 1 auto; min-width: 0; }
+  /* Title banner*/
+  .pos-main .rp-head {
+    flex-wrap: nowrap;
+    gap: 10px;
+    padding: 14px 16px;
+  }
+  .pos-main .rp-head > :first-child {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
   .pos-main .rp-head > h1,
   .pos-main .rp-head > h2,
   .pos-main .rp-head > h3,
@@ -96,19 +255,58 @@
     line-height: 1.15;
     white-space: nowrap;
   }
-  .rp-clock { min-width: 0; padding: 8px 12px; }
-  .rp-clock small { font-size: 0.66rem; }
-  .rp-clock strong { font-size: 1rem; }
+  .rp-clock {
+    min-width: 0;
+    padding: 8px 12px;
+  }
+  .rp-clock small {
+    font-size: 0.66rem;
+  }
+  .rp-clock strong {
+    font-size: 1rem;
+  }
 
-  /* Tabs / filters scroll sideways instead of wrapping */
-  .tabs { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 6px; }
-  .tab { flex: 0 0 auto; white-space: nowrap; }
-  .toolbar, .toolbar-right { flex-direction: column; align-items: stretch; width: 100%; }
-  .search, .inv-bar .search { width: 100%; min-width: 0; }
-  .inv-bar, .rp-bar { flex-direction: column; align-items: stretch; }
-  .inv-bar select, .rp-bar select { width: 100% !important; }
-  .inv-bar:has(input[type="date"]) { flex-direction: row !important; flex-wrap: wrap; align-items: center; gap: 6px; }
-  .inv-bar:has(input[type="date"]) > .search { flex: 0 0 100%; width: 100%; }
+  /* Tabs */
+  .tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 6px;
+  }
+  .tab {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+  .toolbar,
+  .toolbar-right {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+  .search,
+  .inv-bar .search {
+    width: 100%;
+    min-width: 0;
+  }
+  .inv-bar,
+  .rp-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .inv-bar select,
+  .rp-bar select {
+    width: 100% !important;
+  }
+  .inv-bar:has(input[type="date"]) {
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+  }
+  .inv-bar:has(input[type="date"]) > .search {
+    flex: 0 0 100%;
+    width: 100%;
+  }
   .inv-bar:has(input[type="date"]) > :has(input[type="date"]) {
     display: flex;
     flex: 1 1 0;
@@ -118,14 +316,30 @@
     min-width: 0;
     white-space: nowrap;
   }
-  .inv-bar:has(input[type="date"]) input[type="date"] { width: 100%; min-width: 0; padding: 8px 6px; font-size: 14px; }
+  .inv-bar:has(input[type="date"]) input[type="date"] {
+    width: 100%;
+    min-width: 0;
+    padding: 8px 6px;
+    font-size: 14px;
+  }
   .inv-bar:has(input[type="date"]) button,
   .inv-bar:has(input[type="date"]) .btn,
-  .inv-bar:has(input[type="date"]) input[type="submit"] { flex: 0 0 auto; width: auto; min-height: 44px; white-space: nowrap; padding: 10px 14px; font-size: 0.9rem; }
-  .presets { flex-wrap: wrap; gap: 10px 14px; }
+  .inv-bar:has(input[type="date"]) input[type="submit"] {
+    flex: 0 0 auto;
+    width: auto;
+    min-height: 44px;
+    white-space: nowrap;
+    padding: 10px 14px;
+    font-size: 0.9rem;
+  }
+  .presets {
+    flex-wrap: wrap;
+    gap: 10px 14px;
+  }
 
-  /* Mobile tables: keep every column visible without inner horizontal scrolling */
-  .rp-scroll, .tbl {
+  /* Mobile tables */
+  .rp-scroll,
+  .tbl {
     width: 100%;
     max-width: 100%;
     overflow-x: visible !important;
@@ -139,7 +353,8 @@
     border-collapse: collapse;
   }
 
-  .rp-table th, .rp-table td {
+  .rp-table th,
+  .rp-table td {
     min-width: 0 !important;
     padding: 8px 4px;
     font-size: 0.72rem;
@@ -150,20 +365,25 @@
     vertical-align: top;
   }
 
-  .tbl-head, .tbl-row {
+  .tbl-head,
+  .tbl-row {
     min-width: 0 !important;
     width: 100%;
     box-sizing: border-box;
   }
 
-  .tbl-head > *, .tbl-row > * {
+  .tbl-head > *,
+  .tbl-row > * {
     min-width: 0;
     white-space: normal !important;
     overflow-wrap: anywhere;
     word-break: normal;
   }
 
-  .rp-table a, .tbl a, .tbl button, .tbl .btn {
+  .rp-table a,
+  .tbl a,
+  .tbl button,
+  .tbl .btn {
     max-width: 100%;
     white-space: normal;
     overflow-wrap: anywhere;
@@ -171,342 +391,461 @@
     font-size: 0.72rem;
   }
 
-  /* Dashboard: small stat cards side by side */
-  .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 10px; }
-  .stat strong { font-size: 1.5rem; }
-  .recent-row { min-width: 0 !important; }
+  /* Dashboard */
+  .grid-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px;
+  }
+  .stat strong {
+    font-size: 1.5rem;
+  }
+  .recent-row {
+    min-width: 0 !important;
+  }
 
   /* Sales report */
-  .rp-kpis { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 8px; }
-  .rp-kpi.main { grid-column: 1 / -1 !important; grid-row: auto !important; padding: 18px !important; }
-  .rp-kpi:not(.main) { min-width: 0; padding: 10px 6px; }
-  .rp-kpi:not(.main) strong { font-size: 1rem; }
-  .rp-kpi.main strong { font-size: 2.4rem !important; }
-  .rp-grid.two, .rp-grid.wide, .charts-row, .charts-row.two { grid-template-columns: 1fr !important; }
-  .rp-chart, .chart-box { height: 230px; }
-  .rp-downloads { justify-content: stretch; flex-direction: column; }
-  .rp-downloads .btn { width: 100%; text-align: center; }
+  .rp-kpis {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 8px;
+  }
+  .rp-kpi.main {
+    grid-column: 1 / -1 !important;
+    grid-row: auto !important;
+    padding: 18px !important;
+  }
+  .rp-kpi:not(.main) {
+    min-width: 0;
+    padding: 10px 6px;
+  }
+  .rp-kpi:not(.main) strong {
+    font-size: 1rem;
+  }
+  .rp-kpi.main strong {
+    font-size: 2.4rem !important;
+  }
+  .rp-grid.two,
+  .rp-grid.wide,
+  .charts-row,
+  .charts-row.two {
+    grid-template-columns: 1fr !important;
+  }
+  .rp-chart,
+  .chart-box {
+    height: 230px;
+  }
+  .rp-downloads {
+    justify-content: stretch;
+    flex-direction: column;
+  }
+  .rp-downloads .btn {
+    width: 100%;
+    text-align: center;
+  }
 
-  /* Order entry: 2-column product grid, order panel below */
-  .split-layout { grid-template-columns: 1fr !important; }
-  .prod-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 10px; }
-  .tile-img { height: 84px; }
-  .prod-tile { padding: 10px; }
-  .order-panel { position: static !important; min-height: 0 !important; }
-  .receipt-modal { padding: 10px; }
-  .receipt-box { padding: 16px; }
+  /* Order entry */
+  .split-layout {
+    grid-template-columns: 1fr !important;
+  }
+  .prod-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px;
+  }
+  .tile-img {
+    height: 84px;
+  }
+  .prod-tile {
+    padding: 10px;
+  }
+  .order-panel {
+    position: static !important;
+    min-height: 0 !important;
+  }
+  .receipt-modal {
+    padding: 10px;
+  }
+  .receipt-box {
+    padding: 16px;
+  }
 
   /* Manage menu */
-  .menu-layout { grid-template-columns: 1fr !important; }
-  .prod-row { grid-template-columns: 1fr; }
-  .recipe-row { grid-template-columns: 1fr; }
-  .img-pick { flex-direction: column; align-items: flex-start; }
+  .menu-layout {
+    grid-template-columns: 1fr !important;
+  }
+  .prod-row {
+    grid-template-columns: 1fr;
+  }
+  .recipe-row {
+    grid-template-columns: 1fr;
+  }
+  .img-pick {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-  /* Inventory: four small summary cards in a row, panels stack */
-  .inv-cards { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; gap: 8px; }
-  .inv-card { padding: 10px 8px; border-radius: 14px; }
-  .inv-card small { font-size: 0.56rem; letter-spacing: 0.03em; }
-  .inv-card strong { font-size: 1rem !important; margin: 2px 0 0; }
-  .inv-card em { display: none; }
-  .inv-row, .inv2 { grid-template-columns: 1fr !important; }
-  .inv-row > .card { position: static !important; }
-  .inv-row .actions { flex-wrap: nowrap; }
-  .ir-sum { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
-  .ir-sum div { padding: 10px 12px; }
-  .ir-sum small { font-size: 0.58rem; }
-  .ir-sum strong { font-size: 1.15rem; }
-
-  /* Staff accounts */
+  /* Inventory */
+  .inv-cards {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 8px;
+  }
+  .inv-card {
+    padding: 10px 8px;
+    border-radius: 14px;
+  }
+  .inv-card small {
+    font-size: 0.56rem;
+    letter-spacing: 0.03em;
+  }
+  .inv-card strong {
+    font-size: 1rem !important;
+    margin: 2px 0 0;
+  }
+  .inv-card em {
+    display: none;
+  }
+  .inv-row,
+  .inv2 {
+    grid-template-columns: 1fr !important;
+  }
+  .inv-row > .card {
+    position: static !important;
+  }
+  .inv-row .actions {
+    flex-wrap: nowrap;
+  }
+  .ir-sum {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .ir-sum div {
+    padding: 10px 12px;
+  }
+  .ir-sum small {
+    font-size: 0.58rem;
+  }
+  .ir-sum strong {
+    font-size: 1.15rem;
+  }
 }
 
 /* Small phones */
 @media (max-width: 420px) {
   /* Narrow phones: retain all columns and wrap long cell content */
-  .rp-table th, .rp-table td {
+  .rp-table th,
+  .rp-table td {
     padding: 7px 3px;
     font-size: 0.66rem;
   }
 
-  .hero h1 { font-size: 1.9rem; }
-  .menu-card-price { font-size: 0.85rem; }
-  .value-card p { display: none; }
-  .inv-card small { font-size: 0.5rem; }
-  .pos-main .rp-head { flex-direction: row; align-items: center; justify-content: space-between; gap: 8px; }
-  .pos-main .rp-head > :first-child { min-width: 0; }
-  .rp-clock { align-self: auto; flex: 0 0 auto; text-align: center; padding: 7px 9px; }
+  .hero h1 {
+    font-size: 1.9rem;
+  }
+  .menu-card-price {
+    font-size: 0.85rem;
+  }
+  .value-card p {
+    display: none;
+  }
+  .inv-card small {
+    font-size: 0.5rem;
+  }
+  .pos-main .rp-head {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .pos-main .rp-head > :first-child {
+    min-width: 0;
+  }
+  .rp-clock {
+    align-self: auto;
+    flex: 0 0 auto;
+    text-align: center;
+    padding: 7px 9px;
+  }
 }
 
 @media (max-width: 768px) {
-    .rp-table .receipt-action {
-        display: none !important;
-    }
+  .rp-table .receipt-action {
+    display: none !important;
+  }
 }
 
-/* Order History only */
+/* Order History  */
 @media (max-width: 768px) {
-    .hist .rp-card {
-        padding: 12px 10px;
-        overflow: visible;
-    }
+  .hist .rp-card {
+    padding: 12px 10px;
+    overflow: visible;
+  }
 
-    .hist .rp-scroll {
-        width: 100%;
-        overflow: visible !important;
-    }
+  .hist .rp-scroll {
+    width: 100%;
+    overflow: visible !important;
+  }
 
-    .hist .rp-table {
-        width: 100% !important;
-        min-width: 0 !important;
-        table-layout: fixed;
-        border-collapse: collapse;
-    }
+  .hist .rp-table {
+    width: 100% !important;
+    min-width: 0 !important;
+    table-layout: fixed;
+    border-collapse: collapse;
+  }
 
-    /* Keep headings on one line wherever possible */
-    .hist .rp-table th {
-        padding: 8px 2px;
-        font-size: 0.58rem;
-        line-height: 1.2;
-        text-align: left;
-        white-space: normal;
-        overflow-wrap: normal;
-        word-break: normal;
-        vertical-align: middle;
-    }
+  /* Keep headings on one line wherever possible */
+  .hist .rp-table th {
+    padding: 8px 2px;
+    font-size: 0.58rem;
+    line-height: 1.2;
+    text-align: left;
+    white-space: normal;
+    overflow-wrap: normal;
+    word-break: normal;
+    vertical-align: middle;
+  }
 
-    .hist .rp-table td {
-        padding: 9px 3px;
-        font-size: 0.68rem;
-        line-height: 1.4;
-        vertical-align: top;
-        white-space: normal !important;
-        overflow-wrap: break-word;
-        word-break: normal;
-    }
+  .hist .rp-table td {
+    padding: 9px 3px;
+    font-size: 0.68rem;
+    line-height: 1.4;
+    vertical-align: top;
+    white-space: normal !important;
+    overflow-wrap: break-word;
+    word-break: normal;
+  }
 
-    /* Balanced widths for all seven columns */
-    .hist .rp-table th:nth-child(1),
-    .hist .rp-table td:nth-child(1) { width: 10%; }
+  /* Balanced widths for all seven columns */
+  .hist .rp-table th:nth-child(1),
+  .hist .rp-table td:nth-child(1) {
+    width: 10%;
+  }
 
-    .hist .rp-table th:nth-child(2),
-    .hist .rp-table td:nth-child(2) { width: 19%; }
+  .hist .rp-table th:nth-child(2),
+  .hist .rp-table td:nth-child(2) {
+    width: 19%;
+  }
 
-    .hist .rp-table th:nth-child(3),
-    .hist .rp-table td:nth-child(3) { width: 15%; }
+  .hist .rp-table th:nth-child(3),
+  .hist .rp-table td:nth-child(3) {
+    width: 15%;
+  }
 
-    .hist .rp-table th:nth-child(4),
-    .hist .rp-table td:nth-child(4) { width: 12%; }
+  .hist .rp-table th:nth-child(4),
+  .hist .rp-table td:nth-child(4) {
+    width: 12%;
+  }
 
-    .hist .rp-table th:nth-child(5),
-    .hist .rp-table td:nth-child(5) { width: 12%; }
+  .hist .rp-table th:nth-child(5),
+  .hist .rp-table td:nth-child(5) {
+    width: 12%;
+  }
 
-    .hist .rp-table th:nth-child(6),
-    .hist .rp-table td:nth-child(6) { width: 12%; }
+  .hist .rp-table th:nth-child(6),
+  .hist .rp-table td:nth-child(6) {
+    width: 12%;
+  }
 
-    .hist .rp-table th:nth-child(7),
-    .hist .rp-table td:nth-child(7) { width: 20%; }
+  .hist .rp-table th:nth-child(7),
+  .hist .rp-table td:nth-child(7) {
+    width: 20%;
+  }
 
-    /* Keep View and Print beside each other */
-    .hist .row-actions {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-        align-items: stretch;
-    }
+  /* Keep View and Print beside each other */
+  .hist .row-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: stretch;
+  }
 
-    .hist .row-actions .btn {
-        display: block;
-        width: 100%;
-        min-width: 0;
-        margin: 0;
-        padding: 7px 2px;
-        box-sizing: border-box;
-        font-size: 0.65rem;
-        line-height: 1.2;
-        text-align: center;
-        white-space: nowrap;
-    }
+  .hist .row-actions .btn {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 7px 2px;
+    box-sizing: border-box;
+    font-size: 0.65rem;
+    line-height: 1.2;
+    text-align: center;
+    white-space: nowrap;
+  }
 
-    .hist .badge {
-        max-width: 100%;
-        padding: 4px 3px;
-        font-size: 0.6rem;
-        line-height: 1.2;
-        white-space: normal;
-    }
-}
-
-/* Small fixes for Order History — preserve the current table */
-@media (max-width: 768px) {
-
-    /* Put View and Print side by side */
-    .hist .row-actions {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        gap: 4px;
-        align-items: center;
-    }
-
-    .hist .row-actions .btn {
-        flex: 1 1 0;
-        width: auto;
-        min-width: 0;
-        margin: 0;
-        padding: 7px 2px;
-        font-size: 0.6rem;
-        line-height: 1.2;
-        text-align: center;
-        white-space: nowrap;
-    }
-
-    /* Keep ORDER # on one line */
-    .hist .rp-table th:first-child {
-        white-space: nowrap;
-        font-size: 0.53rem;
-        letter-spacing: -0.2px;
-    }
-
-    /* Make the Completed badge more compact */
-    .hist .badge {
-        padding: 4px 3px;
-        font-size: 0.52rem;
-        line-height: 1.2;
-    }
+  .hist .badge {
+    max-width: 100%;
+    padding: 4px 3px;
+    font-size: 0.6rem;
+    line-height: 1.2;
+    white-space: normal;
+  }
 }
 
 /* Small fixes for Order History — preserve the current table */
 @media (max-width: 768px) {
+  /* Put View and Print side by side */
+  .hist .row-actions {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 4px;
+    align-items: center;
+  }
 
-    /* Put View and Print side by side */
-    .hist .row-actions {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        gap: 4px;
-        align-items: center;
-    }
+  .hist .row-actions .btn {
+    flex: 1 1 0;
+    width: auto;
+    min-width: 0;
+    margin: 0;
+    padding: 7px 2px;
+    font-size: 0.6rem;
+    line-height: 1.2;
+    text-align: center;
+    white-space: nowrap;
+  }
 
-    .hist .row-actions .btn {
-        flex: 1 1 0;
-        width: auto;
-        min-width: 0;
-        margin: 0;
-        padding: 7px 2px;
-        font-size: 0.6rem;
-        line-height: 1.2;
-        text-align: center;
-        white-space: nowrap;
-    }
+  /* Keep ORDER # on one line */
+  .hist .rp-table th:first-child {
+    white-space: nowrap;
+    font-size: 0.53rem;
+    letter-spacing: -0.2px;
+  }
 
-    /* Keep ORDER # on one line */
-    .hist .rp-table th:first-child {
-        white-space: nowrap;
-        font-size: 0.53rem;
-        letter-spacing: -0.2px;
-    }
+  /* Make the Completed badge more compact */
+  .hist .badge {
+    padding: 4px 3px;
+    font-size: 0.52rem;
+    line-height: 1.2;
+  }
+}
 
-    /* Make the Completed badge more compact */
-    .hist .badge {
-        padding: 4px 3px;
-        font-size: 0.52rem;
-        line-height: 1.2;
-    }
+/* Small fixes for Order History — preserve the current table */
+@media (max-width: 768px) {
+  /* Put View and Print side by side */
+  .hist .row-actions {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 4px;
+    align-items: center;
+  }
+
+  .hist .row-actions .btn {
+    flex: 1 1 0;
+    width: auto;
+    min-width: 0;
+    margin: 0;
+    padding: 7px 2px;
+    font-size: 0.6rem;
+    line-height: 1.2;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  /* Keep ORDER # on one line */
+  .hist .rp-table th:first-child {
+    white-space: nowrap;
+    font-size: 0.53rem;
+    letter-spacing: -0.2px;
+  }
+
+  /* Make the Completed badge more compact */
+  .hist .badge {
+    padding: 4px 3px;
+    font-size: 0.52rem;
+    line-height: 1.2;
+  }
 }
 
 /* FINAL OVERRIDES — ORDER HISTORY ONLY */
 @media (max-width: 768px) {
+  /* Reduce the excessive row height */
+  .hist .rp-table tbody tr {
+    height: auto !important;
+  }
 
-    /* Reduce the excessive row height */
-    .hist .rp-table tbody tr {
-        height: auto !important;
-    }
+  .hist .rp-table tbody td {
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+  }
 
-    .hist .rp-table tbody td {
-        padding-top: 8px !important;
-        padding-bottom: 8px !important;
-    }
+  /* Keep View and Print on one line */
+  .hist .rp-table td.row-actions {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 4px !important;
+  }
 
-    /* Keep View and Print on one line */
-    .hist .rp-table td.row-actions {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: stretch !important;
-        gap: 4px !important;
-    }
+  .hist .row-actions .btn {
+    width: 100% !important;
+    min-width: 0 !important;
+    padding: 6px 2px !important;
+    margin: 0 !important;
+    font-size: 0.65rem !important;
+    line-height: 1.2 !important;
+  }
 
-    .hist .row-actions .btn {
-        width: 100% !important;
-        min-width: 0 !important;
-        padding: 6px 2px !important;
-        margin: 0 !important;
-        font-size: 0.65rem !important;
-        line-height: 1.2 !important;
-    }
-
-    /* Prevent Completed from splitting awkwardly */
-    .hist .badge {
-        display: inline-block !important;
-        font-size: 0.55rem !important;
-        padding: 4px 3px !important;
-        line-height: 1.2 !important;
-        overflow-wrap: normal !important;
-        word-break: normal !important;
-    }
+  /* Prevent Completed from splitting awkwardly */
+  .hist .badge {
+    display: inline-block !important;
+    font-size: 0.55rem !important;
+    padding: 4px 3px !important;
+    line-height: 1.2 !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+  }
 }
 
 /* FIX ORDER HISTORY ACTION BUTTONS */
 @media (max-width: 768px) {
+  /* Restore the Actions cell as a normal table cell */
+  .hist .rp-table td.row-actions {
+    display: table-cell !important;
+    width: 20%;
+    min-width: 65px;
+    vertical-align: middle;
+    white-space: normal !important;
+  }
 
-    /* Restore the Actions cell as a normal table cell */
-    .hist .rp-table td.row-actions {
-        display: table-cell !important;
-        width: 20%;
-        min-width: 65px;
-        vertical-align: middle;
-        white-space: normal !important;
-    }
-
-    /* Make View and Print normal-sized buttons */
-    .hist .rp-table td.row-actions .btn {
-        display: block !important;
-        width: 100% !important;
-        min-width: 0 !important;
-        height: auto !important;
-        min-height: 34px;
-        box-sizing: border-box;
-        margin: 4px 0 !important;
-        padding: 8px 4px !important;
-        font-size: 0.68rem !important;
-        line-height: 1.2 !important;
-        text-align: center;
-        white-space: nowrap !important;
-        border-radius: 18px;
-    }
+  /* Make View and Print normal-sized buttons */
+  .hist .rp-table td.row-actions .btn {
+    display: block !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 34px;
+    box-sizing: border-box;
+    margin: 4px 0 !important;
+    padding: 8px 4px !important;
+    font-size: 0.68rem !important;
+    line-height: 1.2 !important;
+    text-align: center;
+    white-space: nowrap !important;
+    border-radius: 18px;
+  }
 }
 
 @media (max-width: 768px) {
-    .hist .rp-table td:nth-child(6) .badge {
-        display: inline-flex !important;
-        align-items: center;
-        justify-content: center;
-        white-space: nowrap !important;
-        word-break: keep-all !important;
-        overflow-wrap: normal !important;
-        font-size: 9px !important;
-        line-height: 1.2 !important;
-        padding: 4px 6px !important;
-        max-width: none !important;
-        width: auto !important;
-        border-radius: 20px;
-        box-sizing: border-box;
-    }
+  .hist .rp-table td:nth-child(6) .badge {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap !important;
+    word-break: keep-all !important;
+    overflow-wrap: normal !important;
+    font-size: 9px !important;
+    line-height: 1.2 !important;
+    padding: 4px 6px !important;
+    max-width: none !important;
+    width: auto !important;
+    border-radius: 20px;
+    box-sizing: border-box;
+  }
 }
 
 @media (max-width: 768px) {
-    .hist .rp-table td:nth-child(6) .badge {
-        position: relative;
-        left: -5px;
-    }
+  .hist .rp-table td:nth-child(6) .badge {
+    position: relative;
+    left: -5px;
+  }
 }
 
 /* DashCoffee — Inventory Management Ingredients table ONLY.
@@ -576,20 +915,7 @@
   }
 }
 
-
-/* =====================================================================
-   ORDER HISTORY — CARD LAYOUT (mobile only)
-   Turns each table row into a card:
-     #id ............ [status]
-     date / time
-     items
-     ............ TOTAL ₱0.00   via Cash
-     [   View   ] [   Print   ]
-   Keep this block LAST in mobile.css so it overrides the older
-   Order History rules above. Desktop is not affected.
-   ===================================================================== */
 @media (max-width: 768px) {
-
   /* Outer white panel */
   .hist .rp-card {
     padding: 14px !important;
@@ -610,7 +936,9 @@
   }
 
   /* Hide the column header row */
-  .hist .rp-table thead { display: none !important; }
+  .hist .rp-table thead {
+    display: none !important;
+  }
 
   /* One card per order */
   .hist .rp-table tbody tr {
@@ -634,10 +962,14 @@
     box-sizing: border-box;
   }
 
-  .hist .rp-table tbody tr:last-child { margin-bottom: 0; }
+  .hist .rp-table tbody tr:last-child {
+    margin-bottom: 0;
+  }
 
   /* Every second card has the soft green tint */
-  .hist .rp-table tbody tr:nth-child(even) { background: #f3f8f0; }
+  .hist .rp-table tbody tr:nth-child(even) {
+    background: #f3f8f0;
+  }
 
   /* Reset all cells */
   .hist .rp-table tbody tr td {
@@ -766,8 +1098,9 @@
    automatically when there is no <thead>), so it was being turned
    into a card too. Keep this block LAST. */
 @media (max-width: 768px) {
-
-  .hist .rp-table th { display: none !important; }
+  .hist .rp-table th {
+    display: none !important;
+  }
 
   .hist .rp-table tbody tr:has(> th),
   .hist .rp-table tr:has(> th) {
@@ -776,21 +1109,15 @@
 
   /* If the header row lives inside <tbody>, it shifts the even/odd
      count by one, so flip the tint to keep card #1 white. */
-  .hist .rp-table tbody:has(> tr > th) tr:nth-child(even) { background: #ffffff; }
-  .hist .rp-table tbody:has(> tr > th) tr:nth-child(odd):has(> td) { background: #f3f8f0; }
+  .hist .rp-table tbody:has(> tr > th) tr:nth-child(even) {
+    background: #ffffff;
+  }
+  .hist .rp-table tbody:has(> tr > th) tr:nth-child(odd):has(> td) {
+    background: #f3f8f0;
+  }
 }
 
-/* =====================================================================
-   ORDER ENTRY — mobile fixes
-   1) Content was wider than the screen (banner, search box and the
-      second product column were cut off on the right).
-      Cause: grid columns using plain 1fr can't shrink below their
-      content, and the no-wrap category tabs forced the page wider.
-   2) "Confirm Order" wrapped onto two lines.
-   Keep this block LAST. Desktop is not affected.
-   ===================================================================== */
 @media (max-width: 768px) {
-
   /* Let the columns shrink to the screen width */
   .split-layout {
     grid-template-columns: minmax(0, 1fr) !important;
@@ -860,14 +1187,7 @@
   }
 }
 
-/* =====================================================================
-   MANAGE MENU — "+ Add Ingredient" button
-   Was a tall two-line pill that squeezed the "Ingredients (Recipe)"
-   label. Now a compact single-line button next to the label.
-   Keep this block LAST. Desktop is not affected.
-   ===================================================================== */
 @media (max-width: 768px) {
-
   /* The row holding the label + button */
   .menu-layout :has(> .btn):has(> :not(.btn)):not(form):not(.actions) {
     display: flex;
@@ -900,19 +1220,7 @@
   }
 }
 
-/* =====================================================================
-   INVENTORY — STOCK HISTORY as cards (mobile only)
-   Same card style as Order History:
-     Ingredient ............... [Used]
-     Oct 24, 2026, 11:49 PM
-     -1 ml ............ Stock 998 → 997
-     Staff: Owner ........ Order #19
-   The table is found by "the card that has the date filter bar",
-   excluding the Ingredients table and Order History.
-   Keep this block LAST. Desktop is not affected.
-   ===================================================================== */
 @media (max-width: 768px) {
-
   /* ---------- Filter bar: dates side by side, Filter on its own row ---------- */
   .inv-bar:has(input[type="date"]) {
     display: flex !important;
@@ -920,7 +1228,10 @@
     flex-wrap: wrap;
     gap: 10px !important;
   }
-  .inv-bar:has(input[type="date"]) > .search { flex: 0 0 100%; width: 100%; }
+  .inv-bar:has(input[type="date"]) > .search {
+    flex: 0 0 100%;
+    width: 100%;
+  }
   .inv-bar:has(input[type="date"]) > :has(input[type="date"]) {
     flex: 1 1 calc(50% - 5px);
     min-width: 0;
@@ -950,20 +1261,32 @@
   }
 
   /* ---------- Table -> cards ---------- */
-  *:has(.inv-bar input[type="date"]) .rp-table:not(.inv-stock-table):not(.hist .rp-table),
-  *:has(.inv-bar input[type="date"]) .rp-table:not(.inv-stock-table):not(.hist .rp-table) tbody {
+  *:has(.inv-bar input[type="date"])
+    .rp-table:not(.inv-stock-table):not(.hist .rp-table),
+  *:has(.inv-bar input[type="date"])
+    .rp-table:not(.inv-stock-table):not(.hist .rp-table)
+    tbody {
     display: block !important;
     width: 100% !important;
     min-width: 0 !important;
   }
 
-  *:has(.inv-bar input[type="date"]) .rp-table:not(.inv-stock-table):not(.hist .rp-table) thead,
-  *:has(.inv-bar input[type="date"]) .rp-table:not(.inv-stock-table):not(.hist .rp-table) th,
-  *:has(.inv-bar input[type="date"]) .rp-table:not(.inv-stock-table):not(.hist .rp-table) tr:has(> th) {
+  *:has(.inv-bar input[type="date"])
+    .rp-table:not(.inv-stock-table):not(.hist .rp-table)
+    thead,
+  *:has(.inv-bar input[type="date"])
+    .rp-table:not(.inv-stock-table):not(.hist .rp-table)
+    th,
+  *:has(.inv-bar input[type="date"])
+    .rp-table:not(.inv-stock-table):not(.hist .rp-table)
+    tr:has(> th) {
     display: none !important;
   }
 
-  *:has(.inv-bar input[type="date"]) .rp-table:not(.inv-stock-table):not(.hist .rp-table) tbody tr:has(> td) {
+  *:has(.inv-bar input[type="date"])
+    .rp-table:not(.inv-stock-table):not(.hist .rp-table)
+    tbody
+    tr:has(> td) {
     display: grid !important;
     grid-template-columns: 1fr auto;
     grid-template-areas:
@@ -984,11 +1307,25 @@
   }
 
   /* Soft green tint on every second card (header row shifts the count by one) */
-  *:has(.inv-bar input[type="date"]) .rp-table:not(.inv-stock-table):not(.hist .rp-table) tbody:has(> tr > th) tr:nth-child(odd):has(> td) { background: #f3f8f0; }
-  *:has(.inv-bar input[type="date"]) .rp-table:not(.inv-stock-table):not(.hist .rp-table) tbody:not(:has(> tr > th)) tr:nth-child(even) { background: #f3f8f0; }
+  *:has(.inv-bar input[type="date"])
+    .rp-table:not(.inv-stock-table):not(.hist .rp-table)
+    tbody:has(> tr > th)
+    tr:nth-child(odd):has(> td) {
+    background: #f3f8f0;
+  }
+  *:has(.inv-bar input[type="date"])
+    .rp-table:not(.inv-stock-table):not(.hist .rp-table)
+    tbody:not(:has(> tr > th))
+    tr:nth-child(even) {
+    background: #f3f8f0;
+  }
 
   /* Reset every cell */
-  *:has(.inv-bar input[type="date"]) .rp-table:not(.inv-stock-table):not(.hist .rp-table) tbody tr td {
+  *:has(.inv-bar input[type="date"])
+    .rp-table:not(.inv-stock-table):not(.hist .rp-table)
+    tbody
+    tr
+    td {
     display: block !important;
     width: auto !important;
     min-width: 0 !important;
@@ -1003,19 +1340,31 @@
   }
 
   /* Date (1) */
-  *:has(.inv-bar input[type="date"]) .rp-table:not(.inv-stock-table):not(.hist .rp-table) tbody tr td:nth-child(1) {
+  *:has(.inv-bar input[type="date"])
+    .rp-table:not(.inv-stock-table):not(.hist .rp-table)
+    tbody
+    tr
+    td:nth-child(1) {
     grid-area: date;
     font-size: 0.76rem !important;
     color: #6b7a6b;
   }
   /* Ingredient (2) */
-  *:has(.inv-bar input[type="date"]) .rp-table:not(.inv-stock-table):not(.hist .rp-table) tbody tr td:nth-child(2) {
+  *:has(.inv-bar input[type="date"])
+    .rp-table:not(.inv-stock-table):not(.hist .rp-table)
+    tbody
+    tr
+    td:nth-child(2) {
     grid-area: ing;
     font-size: 1.05rem !important;
     font-weight: 800;
   }
   /* Action (3) — small pill */
-  *:has(.inv-bar input[type="date"]) .rp-table:not(.inv-stock-table):not(.hist .rp-table) tbody tr td:nth-child(3) {
+  *:has(.inv-bar input[type="date"])
+    .rp-table:not(.inv-stock-table):not(.hist .rp-table)
+    tbody
+    tr
+    td:nth-child(3) {
     grid-area: act;
     justify-self: end;
     padding: 5px 14px !important;
@@ -1027,38 +1376,62 @@
     white-space: nowrap !important;
   }
   /* Change (4) — big number */
-  *:has(.inv-bar input[type="date"]) .rp-table:not(.inv-stock-table):not(.hist .rp-table) tbody tr td:nth-child(4) {
+  *:has(.inv-bar input[type="date"])
+    .rp-table:not(.inv-stock-table):not(.hist .rp-table)
+    tbody
+    tr
+    td:nth-child(4) {
     grid-area: chg;
     font-size: 1.25rem !important;
     font-weight: 800;
     white-space: nowrap !important;
   }
   /* Before → After (5) */
-  *:has(.inv-bar input[type="date"]) .rp-table:not(.inv-stock-table):not(.hist .rp-table) tbody tr td:nth-child(5) {
+  *:has(.inv-bar input[type="date"])
+    .rp-table:not(.inv-stock-table):not(.hist .rp-table)
+    tbody
+    tr
+    td:nth-child(5) {
     grid-area: ba;
     justify-self: end;
     font-size: 0.85rem !important;
     color: #4f5f4f;
     white-space: nowrap !important;
   }
-  *:has(.inv-bar input[type="date"]) .rp-table:not(.inv-stock-table):not(.hist .rp-table) tbody tr td:nth-child(5)::before {
+  *:has(.inv-bar input[type="date"])
+    .rp-table:not(.inv-stock-table):not(.hist .rp-table)
+    tbody
+    tr
+    td:nth-child(5)::before {
     content: "Stock ";
     font-size: 0.7rem;
     color: #8a998a;
   }
   /* Staff (6) */
-  *:has(.inv-bar input[type="date"]) .rp-table:not(.inv-stock-table):not(.hist .rp-table) tbody tr td:nth-child(6) {
+  *:has(.inv-bar input[type="date"])
+    .rp-table:not(.inv-stock-table):not(.hist .rp-table)
+    tbody
+    tr
+    td:nth-child(6) {
     grid-area: staff;
     font-size: 0.8rem !important;
     color: #5f6f5f;
   }
-  *:has(.inv-bar input[type="date"]) .rp-table:not(.inv-stock-table):not(.hist .rp-table) tbody tr td:nth-child(6)::before {
+  *:has(.inv-bar input[type="date"])
+    .rp-table:not(.inv-stock-table):not(.hist .rp-table)
+    tbody
+    tr
+    td:nth-child(6)::before {
     content: "Staff: ";
     font-size: 0.7rem;
     color: #8a998a;
   }
   /* Reason (7) */
-  *:has(.inv-bar input[type="date"]) .rp-table:not(.inv-stock-table):not(.hist .rp-table) tbody tr td:nth-child(7) {
+  *:has(.inv-bar input[type="date"])
+    .rp-table:not(.inv-stock-table):not(.hist .rp-table)
+    tbody
+    tr
+    td:nth-child(7) {
     grid-area: reason;
     justify-self: end;
     font-size: 0.8rem !important;
@@ -1067,9 +1440,6 @@
   }
 }
 
-/* =====================================================================
-   PAGER (Prev / Page x of y / Next) — used under Stock History
-   ===================================================================== */
 @media (max-width: 768px) {
   .pager {
     display: flex;
@@ -1099,11 +1469,6 @@
   }
 }
 
-/* =====================================================================
-   STOCK HISTORY — From / To date boxes (no more clipped dates)
-   Each box needs at least 150px. On narrow phones they stack
-   (From above To); on wider phones they sit side by side.
-   ===================================================================== */
 @media (max-width: 768px) {
   .inv-bar:has(input[type="date"]) > label:has(input[type="date"]),
   .inv-bar:has(input[type="date"]) > :has(input[type="date"]) {
@@ -1124,23 +1489,14 @@
   .inv-bar:has(input[type="date"]) input[type="date"]::-webkit-datetime-edit {
     padding: 0;
   }
-  .inv-bar:has(input[type="date"]) input[type="date"]::-webkit-calendar-picker-indicator {
+  .inv-bar:has(input[type="date"])
+    input[type="date"]::-webkit-calendar-picker-indicator {
     margin-left: 4px;
     padding: 0;
   }
 }
 
-/* =====================================================================
-   INVENTORY REPORTS — ingredient dropdown + Apply button
-   The dropdown was stretched very tall. On desktop the filter row uses
-   a flex size like "220px" for the width; on mobile the row is stacked
-   into a column, so that same 220px became the HEIGHT.
-   Fix: in the stacked layout, every control keeps its natural height.
-   (Date-range filter bars are not touched.)
-   Keep this block LAST. Desktop is not affected.
-   ===================================================================== */
 @media (max-width: 768px) {
-
   .rp-bar:not(:has(input[type="date"])),
   .inv-bar:not(:has(input[type="date"])) {
     height: auto !important;
@@ -1177,24 +1533,10 @@
   }
 }
 
-/* =====================================================================
-   INVENTORY — INGREDIENTS table as cards (mobile only)
-   Like the reference: one card per ingredient with label : value rows,
-   then the action buttons in one row at the bottom.
-
-     bean
-     Stock      : 400
-     Unit       : ml
-     Threshold  : 499
-     Status     : [Low]
-     [ Select ] [ Edit ] [ History ]
-
-   Low stock cards are tinted yellow, out-of-stock cards red.
-   Keep this block LAST. Desktop is not affected.
-   ===================================================================== */
 @media (max-width: 768px) {
-
-  .inv-row .inv-stock-table-card { padding: 12px !important; }
+  .inv-row .inv-stock-table-card {
+    padding: 12px !important;
+  }
 
   .inv-row .inv-stock-table-card > .rp-scroll {
     overflow: visible !important;
@@ -1225,18 +1567,32 @@
     border-radius: 18px;
     box-sizing: border-box;
   }
-  .inv-row .inv-stock-table-card .inv-stock-table tbody tr:has(> td):last-child { margin-bottom: 0; }
+  .inv-row
+    .inv-stock-table-card
+    .inv-stock-table
+    tbody
+    tr:has(> td):last-child {
+    margin-bottom: 0;
+  }
 
   /* Tints: low = yellow, out = red, every second normal card = soft green */
   .inv-row .inv-stock-table-card .inv-stock-table tbody tr:has(.badge.low) {
     background: #fff1cf;
     border-color: #f0d58c;
   }
-  .inv-row .inv-stock-table-card .inv-stock-table tbody tr:has(.badge.out_of_stock) {
+  .inv-row
+    .inv-stock-table-card
+    .inv-stock-table
+    tbody
+    tr:has(.badge.out_of_stock) {
     background: #fde8e5;
     border-color: #f1b9b2;
   }
-  .inv-row .inv-stock-table-card .inv-stock-table tbody tr:has(.badge.available):nth-child(even) {
+  .inv-row
+    .inv-stock-table-card
+    .inv-stock-table
+    tbody
+    tr:has(.badge.available):nth-child(even) {
     background: #f3f8f0;
   }
 
@@ -1269,18 +1625,51 @@
   }
 
   /* Labels (the "Stock :" part) */
-  .inv-row .inv-stock-table-card .inv-stock-table tbody tr td:nth-child(n+2):nth-child(-n+5)::before {
+  .inv-row
+    .inv-stock-table-card
+    .inv-stock-table
+    tbody
+    tr
+    td:nth-child(n + 2):nth-child(-n + 5)::before {
     flex: 0 0 96px;
     font-size: 0.82rem;
     font-weight: 600;
     color: #5f6f5f;
     text-align: justify;
-    text-align-last: justify;   /* puts the ":" at the right edge of the label */
+    text-align-last: justify; /* puts the ":" at the right edge of the label */
   }
-  .inv-row .inv-stock-table-card .inv-stock-table tbody tr td:nth-child(2)::before { content: "Stock :"; }
-  .inv-row .inv-stock-table-card .inv-stock-table tbody tr td:nth-child(3)::before { content: "Unit :"; }
-  .inv-row .inv-stock-table-card .inv-stock-table tbody tr td:nth-child(4)::before { content: "Threshold :"; }
-  .inv-row .inv-stock-table-card .inv-stock-table tbody tr td:nth-child(5)::before { content: "Status :"; }
+  .inv-row
+    .inv-stock-table-card
+    .inv-stock-table
+    tbody
+    tr
+    td:nth-child(2)::before {
+    content: "Stock :";
+  }
+  .inv-row
+    .inv-stock-table-card
+    .inv-stock-table
+    tbody
+    tr
+    td:nth-child(3)::before {
+    content: "Unit :";
+  }
+  .inv-row
+    .inv-stock-table-card
+    .inv-stock-table
+    tbody
+    tr
+    td:nth-child(4)::before {
+    content: "Threshold :";
+  }
+  .inv-row
+    .inv-stock-table-card
+    .inv-stock-table
+    tbody
+    tr
+    td:nth-child(5)::before {
+    content: "Status :";
+  }
 
   /* Stock number stands out */
   .inv-row .inv-stock-table-card .inv-stock-table tbody tr td:nth-child(2) {
@@ -1288,7 +1677,13 @@
   }
 
   /* Status badge */
-  .inv-row .inv-stock-table-card .inv-stock-table tbody tr td:nth-child(5) .badge {
+  .inv-row
+    .inv-stock-table-card
+    .inv-stock-table
+    tbody
+    tr
+    td:nth-child(5)
+    .badge {
     display: inline-block;
     padding: 4px 12px;
     font-size: 0.74rem;
@@ -1326,39 +1721,42 @@
   }
 }
 
-/* =====================================================================
-   LOW-STOCK / STATUS TABLE (Ingredient, Unit, Current stock,
-   Minimum stock, Status) as cards — same look as the Ingredients cards
-   (mobile only).
-
-     bean
-     Unit           : ml
-     Current stock  : 400
-     Minimum stock  : 499
-     Status         : [Low]
-
-   The table is found by shape: 5 columns, Status badge in the last one.
-   Keep this block LAST. Desktop is not affected.
-   ===================================================================== */
 @media (max-width: 768px) {
-
   /* Table -> stack of cards */
-  .rp-table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) .badge):not(.inv-stock-table):not(.hist .rp-table),
-  .rp-table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) .badge):not(.inv-stock-table):not(.hist .rp-table) tbody {
+  .rp-table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) .badge
+    ):not(.inv-stock-table):not(.hist .rp-table),
+  .rp-table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) .badge
+    ):not(.inv-stock-table):not(.hist .rp-table)
+    tbody {
     display: block !important;
     width: 100% !important;
     min-width: 0 !important;
   }
 
   /* Hide the green header row */
-  .rp-table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) .badge):not(.inv-stock-table):not(.hist .rp-table) thead,
-  .rp-table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) .badge):not(.inv-stock-table):not(.hist .rp-table) th,
-  .rp-table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) .badge):not(.inv-stock-table):not(.hist .rp-table) tr:has(> th) {
+  .rp-table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) .badge
+    ):not(.inv-stock-table):not(.hist .rp-table)
+    thead,
+  .rp-table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) .badge
+    ):not(.inv-stock-table):not(.hist .rp-table)
+    th,
+  .rp-table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) .badge
+    ):not(.inv-stock-table):not(.hist .rp-table)
+    tr:has(> th) {
     display: none !important;
   }
 
   /* One card per ingredient */
-  .rp-table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) .badge):not(.inv-stock-table):not(.hist .rp-table) tbody tr:has(> td) {
+  .rp-table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) .badge
+    ):not(.inv-stock-table):not(.hist .rp-table)
+    tbody
+    tr:has(> td) {
     display: block !important;
     height: auto !important;
     margin: 0 0 12px;
@@ -1368,23 +1766,46 @@
     border-radius: 18px;
     box-sizing: border-box;
   }
-  .rp-table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) .badge):not(.inv-stock-table):not(.hist .rp-table) tbody tr:has(> td):last-child { margin-bottom: 0; }
+  .rp-table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) .badge
+    ):not(.inv-stock-table):not(.hist .rp-table)
+    tbody
+    tr:has(> td):last-child {
+    margin-bottom: 0;
+  }
 
   /* Tints: low = yellow, out = red, every second normal card = soft green */
-  .rp-table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) .badge):not(.inv-stock-table):not(.hist .rp-table) tbody tr:has(.badge.low) {
+  .rp-table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) .badge
+    ):not(.inv-stock-table):not(.hist .rp-table)
+    tbody
+    tr:has(.badge.low) {
     background: #fff1cf;
     border-color: #f0d58c;
   }
-  .rp-table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) .badge):not(.inv-stock-table):not(.hist .rp-table) tbody tr:has(.badge.out_of_stock) {
+  .rp-table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) .badge
+    ):not(.inv-stock-table):not(.hist .rp-table)
+    tbody
+    tr:has(.badge.out_of_stock) {
     background: #fde8e5;
     border-color: #f1b9b2;
   }
-  .rp-table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) .badge):not(.inv-stock-table):not(.hist .rp-table) tbody tr:has(.badge.available):nth-child(even) {
+  .rp-table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) .badge
+    ):not(.inv-stock-table):not(.hist .rp-table)
+    tbody
+    tr:has(.badge.available):nth-child(even) {
     background: #f3f8f0;
   }
 
   /* Every cell becomes a "label : value" row */
-  .rp-table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) .badge):not(.inv-stock-table):not(.hist .rp-table) tbody tr td {
+  .rp-table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) .badge
+    ):not(.inv-stock-table):not(.hist .rp-table)
+    tbody
+    tr
+    td {
     display: flex !important;
     align-items: center;
     gap: 10px;
@@ -1404,7 +1825,12 @@
   }
 
   /* Ingredient name = card title */
-  .rp-table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) .badge):not(.inv-stock-table):not(.hist .rp-table) tbody tr td:nth-child(1) {
+  .rp-table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) .badge
+    ):not(.inv-stock-table):not(.hist .rp-table)
+    tbody
+    tr
+    td:nth-child(1) {
     display: block !important;
     margin-bottom: 6px;
     padding: 0 0 10px !important;
@@ -1414,26 +1840,70 @@
   }
 
   /* Labels */
-  .rp-table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) .badge):not(.inv-stock-table):not(.hist .rp-table) tbody tr td:nth-child(n+2)::before {
+  .rp-table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) .badge
+    ):not(.inv-stock-table):not(.hist .rp-table)
+    tbody
+    tr
+    td:nth-child(n + 2)::before {
     flex: 0 0 118px;
     font-size: 0.82rem;
     font-weight: 600;
     color: #5f6f5f;
     text-align: justify;
-    text-align-last: justify;   /* ":" sits at the right edge of the label */
+    text-align-last: justify; /* ":" sits at the right edge of the label */
   }
-  .rp-table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) .badge):not(.inv-stock-table):not(.hist .rp-table) tbody tr td:nth-child(2)::before { content: "Unit :"; }
-  .rp-table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) .badge):not(.inv-stock-table):not(.hist .rp-table) tbody tr td:nth-child(3)::before { content: "Current stock :"; }
-  .rp-table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) .badge):not(.inv-stock-table):not(.hist .rp-table) tbody tr td:nth-child(4)::before { content: "Minimum stock :"; }
-  .rp-table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) .badge):not(.inv-stock-table):not(.hist .rp-table) tbody tr td:nth-child(5)::before { content: "Status :"; }
+  .rp-table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) .badge
+    ):not(.inv-stock-table):not(.hist .rp-table)
+    tbody
+    tr
+    td:nth-child(2)::before {
+    content: "Unit :";
+  }
+  .rp-table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) .badge
+    ):not(.inv-stock-table):not(.hist .rp-table)
+    tbody
+    tr
+    td:nth-child(3)::before {
+    content: "Current stock :";
+  }
+  .rp-table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) .badge
+    ):not(.inv-stock-table):not(.hist .rp-table)
+    tbody
+    tr
+    td:nth-child(4)::before {
+    content: "Minimum stock :";
+  }
+  .rp-table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) .badge
+    ):not(.inv-stock-table):not(.hist .rp-table)
+    tbody
+    tr
+    td:nth-child(5)::before {
+    content: "Status :";
+  }
 
   /* Current stock stands out */
-  .rp-table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) .badge):not(.inv-stock-table):not(.hist .rp-table) tbody tr td:nth-child(3) {
+  .rp-table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) .badge
+    ):not(.inv-stock-table):not(.hist .rp-table)
+    tbody
+    tr
+    td:nth-child(3) {
     font-weight: 800 !important;
   }
 
   /* Status badge */
-  .rp-table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) .badge):not(.inv-stock-table):not(.hist .rp-table) tbody tr td:nth-child(5) .badge {
+  .rp-table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) .badge
+    ):not(.inv-stock-table):not(.hist .rp-table)
+    tbody
+    tr
+    td:nth-child(5)
+    .badge {
     display: inline-block;
     padding: 4px 12px;
     font-size: 0.74rem;
@@ -1442,17 +1912,7 @@
   }
 }
 
-/* =====================================================================
-   SALES REPORT — filter bar (From / To / payment method / Apply / presets)
-   Everything was stretched tall with big gaps: on desktop the controls
-   use a flex size like "180px" for WIDTH, but the mobile bar is a
-   column, so that size became HEIGHT.
-   Now: From + To side by side (stacked on very narrow phones), the
-   payment dropdown and Apply full width, quick ranges as small pills.
-   Keep this block LAST. Desktop is not affected.
-   ===================================================================== */
 @media (max-width: 768px) {
-
   .rp-bar:has(input[type="date"]) {
     display: flex !important;
     flex-direction: row !important;
@@ -1536,17 +1996,7 @@
   }
 }
 
-/* =====================================================================
-   TRANSACTIONS — "Recent transactions" table fits like "Recent orders"
-   Cause of the squashed "V i e w": the header row has 5 headings but
-   every row has 6 cells (the View link has no heading). With the fixed
-   table layout the 6th cell gets no width and spills out of the card.
-   Fix: let this table size its columns by content, give View its own
-   small pill, and paint the header bar across the full row.
-   Keep this block LAST. Desktop is not affected.
-   ===================================================================== */
 @media (max-width: 768px) {
-
   #txTable {
     table-layout: auto !important;
     width: 100% !important;
@@ -1593,8 +2043,6 @@
     writing-mode: horizontal-tb;
   }
 
-  /* Card header: title on top, search box full width below (no clipping).
-     The search input sits inside the <h3>, so the h3 becomes a wrapping row. */
   h3:has(> #txSearch) {
     display: flex;
     flex-wrap: wrap;
@@ -1610,13 +2058,8 @@
   }
 }
 
-/* =====================================================================
-   TRANSACTIONS — hide the View column on mobile; tap the row instead
-   (the tap itself is handled by the small script added to the page).
-   Desktop still shows the View button. Keep this block LAST.
-   ===================================================================== */
-@media (max-width: 768px) {
 
+@media (max-width: 768px) {
   /* Remove the View column (cell + its empty heading slot) */
   #txTable td:nth-child(6),
   #txTable th:nth-child(6) {
@@ -1631,16 +2074,9 @@
   #txTable tbody tr:has(> td):active td {
     background: #dce8d6;
   }
-
 }
 
-/* =====================================================================
-   SALES REPORT — summary cards in a tidy 2 x 2 grid
-   Total sales on top (full width), then
-     [ Orders ]     [ Avg. order ]
-     [ Items sold ] [ Peak hour  ]
-   Keep this block LAST. Desktop is not affected.
-   ===================================================================== */
+
 @media (max-width: 768px) {
   .rp-kpis {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
@@ -1657,23 +2093,11 @@
   }
   .rp-kpi:not(.main) strong {
     font-size: 1.2rem;
-    white-space: nowrap;   /* keeps "8 PM - 9 PM" on one line */
+    white-space: nowrap; /* keeps "8 PM - 9 PM" on one line */
   }
 }
 
-/* =====================================================================
-   SALES REPORT — "Recent transactions" as cards, like Order History
-   (mobile only, no buttons: tap a card to open its receipt)
-
-     #19
-     Oct 24, 2026 11:49 PM
-     1× ewan
-                       TOTAL ₱1.00   via Cash
-
-   Keep this block LAST. Desktop is not affected.
-   ===================================================================== */
 @media (max-width: 768px) {
-
   /* Table -> stack of cards */
   #txTable,
   #txTable tbody {
@@ -1709,17 +2133,25 @@
     border-radius: 18px;
     box-sizing: border-box;
   }
-  #txTable tbody tr:has(> td):last-child { margin-bottom: 0; }
+  #txTable tbody tr:has(> td):last-child {
+    margin-bottom: 0;
+  }
 
   /* The search box hides rows with the [hidden] attribute — keep that working */
-  #txTable tbody tr[hidden] { display: none !important; }
+  #txTable tbody tr[hidden] {
+    display: none !important;
+  }
 
   /* Every second card has the soft green tint
      (the header row is child #1, so real cards start at #2) */
-  #txTable tbody tr:nth-child(odd):has(> td) { background: #f3f8f0; }
+  #txTable tbody tr:nth-child(odd):has(> td) {
+    background: #f3f8f0;
+  }
 
   /* Pressing a card tints it */
-  #txTable tbody tr:has(> td):active { background: #dce8d6 !important; }
+  #txTable tbody tr:has(> td):active {
+    background: #dce8d6 !important;
+  }
 
   /* Reset every cell */
   #txTable tbody tr td {
@@ -1790,50 +2222,53 @@
   }
 
   /* 6 — View column stays hidden (tap the card instead) */
-  #txTable tbody tr td:nth-child(6) { display: none !important; }
-}
-
-/* =====================================================================
-   SALES REPORT — Recent transactions: only the latest 3 on mobile
-   (the header row is child #1, so real rows are #2, #3, #4; hide #5+).
-   Desktop still shows all of them. Keep this block LAST.
-   ===================================================================== */
-@media (max-width: 768px) {
-  #txTable tbody tr:nth-child(n+5) {
+  #txTable tbody tr td:nth-child(6) {
     display: none !important;
   }
 }
 
-/* =====================================================================
-   STAFF ACCOUNTS table as cards (mobile only) — same style as the others
-
-     Account #1
-     Owner ........................ [Owner]
-     Username   : owner
-     [ Customize ] [ Delete ]
-
-   The table is found by its shape: 5 columns, role badge in column 4,
-   buttons in column 5.  Keep this block LAST. Desktop is not affected.
-   ===================================================================== */
 @media (max-width: 768px) {
+  #txTable tbody tr:nth-child(n + 5) {
+    display: none !important;
+  }
+}
 
+@media (max-width: 768px) {
   /* Table -> stack of cards */
-  table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) :is(.btn, button, a)),
-  table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) :is(.btn, button, a)) tbody {
+  table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) :is(.btn, button, a)
+    ),
+  table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) :is(.btn, button, a)
+    )
+    tbody {
     display: block !important;
     width: 100% !important;
     min-width: 0 !important;
   }
 
   /* Hide the green header row */
-  table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) :is(.btn, button, a)) thead,
-  table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) :is(.btn, button, a)) th,
-  table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) :is(.btn, button, a)) tr:has(> th) {
+  table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) :is(.btn, button, a)
+    )
+    thead,
+  table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) :is(.btn, button, a)
+    )
+    th,
+  table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) :is(.btn, button, a)
+    )
+    tr:has(> th) {
     display: none !important;
   }
 
   /* One card per account */
-  table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) :is(.btn, button, a)) tbody tr:has(> td) {
+  table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) :is(.btn, button, a)
+    )
+    tbody
+    tr:has(> td) {
     display: grid !important;
     grid-template-columns: 1fr auto;
     grid-template-areas:
@@ -1852,15 +2287,38 @@
     border-radius: 18px;
     box-sizing: border-box;
   }
-  table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) :is(.btn, button, a)) tbody tr:has(> td):last-child { margin-bottom: 0; }
+  table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) :is(.btn, button, a)
+    )
+    tbody
+    tr:has(> td):last-child {
+    margin-bottom: 0;
+  }
 
   /* Soft green tint on every second card
      (if the header row sits inside <tbody> it shifts the count by one) */
-  table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) :is(.btn, button, a)) tbody:not(:has(> tr > th)) tr:nth-child(even) { background: #f3f8f0; }
-  table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) :is(.btn, button, a)) tbody:has(> tr > th) tr:nth-child(odd):has(> td) { background: #f3f8f0; }
+  table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) :is(.btn, button, a)
+    )
+    tbody:not(:has(> tr > th))
+    tr:nth-child(even) {
+    background: #f3f8f0;
+  }
+  table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) :is(.btn, button, a)
+    )
+    tbody:has(> tr > th)
+    tr:nth-child(odd):has(> td) {
+    background: #f3f8f0;
+  }
 
   /* Reset every cell */
-  table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) :is(.btn, button, a)) tbody tr td {
+  table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) :is(.btn, button, a)
+    )
+    tbody
+    tr
+    td {
     display: block !important;
     width: auto !important;
     min-width: 0 !important;
@@ -1876,7 +2334,12 @@
   }
 
   /* 1 — Account number (small label on top) */
-  table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) :is(.btn, button, a)) tbody tr td:nth-child(1) {
+  table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) :is(.btn, button, a)
+    )
+    tbody
+    tr
+    td:nth-child(1) {
     grid-area: id;
     font-size: 0.72rem !important;
     font-weight: 700;
@@ -1884,17 +2347,34 @@
     text-transform: uppercase;
     color: #6b7a6b;
   }
-  table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) :is(.btn, button, a)) tbody tr td:nth-child(1)::before { content: "Account #"; }
+  table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) :is(.btn, button, a)
+    )
+    tbody
+    tr
+    td:nth-child(1)::before {
+    content: "Account #";
+  }
 
   /* 2 — Name = card title */
-  table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) :is(.btn, button, a)) tbody tr td:nth-child(2) {
+  table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) :is(.btn, button, a)
+    )
+    tbody
+    tr
+    td:nth-child(2) {
     grid-area: name;
     font-size: 1.15rem !important;
     font-weight: 800;
   }
 
   /* 3 — Username row */
-  table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) :is(.btn, button, a)) tbody tr td:nth-child(3) {
+  table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) :is(.btn, button, a)
+    )
+    tbody
+    tr
+    td:nth-child(3) {
     grid-area: user;
     display: flex !important;
     align-items: center;
@@ -1902,7 +2382,12 @@
     padding-top: 6px !important;
     border-top: 1px solid rgba(45, 106, 58, 0.15) !important;
   }
-  table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) :is(.btn, button, a)) tbody tr td:nth-child(3)::before {
+  table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) :is(.btn, button, a)
+    )
+    tbody
+    tr
+    td:nth-child(3)::before {
     content: "Username :";
     flex: 0 0 96px;
     font-size: 0.82rem;
@@ -1913,11 +2398,22 @@
   }
 
   /* 4 — Role badge (top right, one line) */
-  table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) :is(.btn, button, a)) tbody tr td:nth-child(4) {
+  table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) :is(.btn, button, a)
+    )
+    tbody
+    tr
+    td:nth-child(4) {
     grid-area: role;
     justify-self: end;
   }
-  table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) :is(.btn, button, a)) tbody tr td:nth-child(4) > * {
+  table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) :is(.btn, button, a)
+    )
+    tbody
+    tr
+    td:nth-child(4)
+    > * {
     display: inline-flex !important;
     align-items: center;
     justify-content: center;
@@ -1933,21 +2429,50 @@
   }
 
   /* 5 — Customize / Delete side by side */
-  table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) :is(.btn, button, a)) tbody tr td:nth-child(5) {
+  table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) :is(.btn, button, a)
+    )
+    tbody
+    tr
+    td:nth-child(5) {
     grid-area: act;
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px;
     margin-top: 8px;
   }
-  table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) :is(.btn, button, a)) tbody tr td:nth-child(5) form {
+  table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) :is(.btn, button, a)
+    )
+    tbody
+    tr
+    td:nth-child(5)
+    form {
     display: block;
     margin: 0;
     min-width: 0;
   }
-  table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) :is(.btn, button, a)) tbody tr td:nth-child(5) .btn,
-  table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) :is(.btn, button, a)) tbody tr td:nth-child(5) button,
-  table:has(tr > th:nth-child(5):last-child):has(td:nth-child(5) :is(.btn, button, a)) tbody tr td:nth-child(5) a {
+  table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) :is(.btn, button, a)
+    )
+    tbody
+    tr
+    td:nth-child(5)
+    .btn,
+  table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) :is(.btn, button, a)
+    )
+    tbody
+    tr
+    td:nth-child(5)
+    button,
+  table:has(tr > th:nth-child(5):last-child):has(
+      td:nth-child(5) :is(.btn, button, a)
+    )
+    tbody
+    tr
+    td:nth-child(5)
+    a {
     display: flex !important;
     align-items: center;
     justify-content: center;
@@ -1965,16 +2490,7 @@
   }
 }
 
-/* =====================================================================
-   MOBILE SIDE MENU (drawer) — tidier layout
-   - brand + user chip separated from the links by a soft divider
-   - links: even spacing, rounded, bigger tap area, soft hover/press
-   - Log Out: full-width button pinned to the bottom of the drawer
-     (it was floating at the right, overlapping the menu)
-   Keep this block LAST. Desktop is not affected.
-   ===================================================================== */
 @media (max-width: 768px) {
-
   .pos .pos-side {
     display: flex;
     flex-direction: column;
@@ -2053,16 +2569,7 @@
   }
 }
 
-/* =====================================================================
-   MOBILE SIDE MENU — fix: links were pushed into a second column
-   The drawer is a column that was allowed to WRAP. My extra spacing made
-   the content taller than the screen, so the links wrapped to the right
-   and got cut off. Now it never wraps; if the screen is short, the
-   drawer scrolls, and on short phones the spacing tightens up.
-   Keep this block LAST. Desktop is not affected.
-   ===================================================================== */
 @media (max-width: 768px) {
-
   .pos .pos-side {
     display: flex !important;
     flex-direction: column !important;
@@ -2086,7 +2593,6 @@
 
 /* Short phones: tighter spacing so everything fits without scrolling */
 @media (max-width: 768px) and (max-height: 640px) {
-
   .pos .pos-side {
     padding-top: 16px !important;
   }
@@ -2113,13 +2619,6 @@
   }
 }
 
-/* =====================================================================
-   SIDE MENU — links stay perfectly still (mobile AND desktop)
-   No sliding, shrinking or shifting when you hover, press or click a link
-   (this also cancels any hover/active movement set in pos.css).
-   This block is intentionally NOT inside a media query.
-   Keep it LAST.
-   ===================================================================== */
 .pos .pos-side .pos-nav a,
 .pos .pos-side .pos-nav a:hover,
 .pos .pos-side .pos-nav a:focus,
@@ -2137,13 +2636,6 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-/* =====================================================================
-   SIDE MENU — "keep drawer open between pages", no flash
-   A tiny script in <head> adds class "drawer-pre" to <html> BEFORE the page
-   is first painted, so the drawer is already open on the new page.
-   Once pos.js is in the open state too, the class is removed again.
-   Keep this block LAST. Phones only.
-   ===================================================================== */
 @media (max-width: 768px) {
   html.drawer-pre .pos .pos-side {
     transform: none !important;
@@ -2168,23 +2660,17 @@
   }
 }
 
-/* =====================================================================
-   SMOOTH PAGE CHANGES (mobile AND desktop)
-   Browsers that support "view transitions" (Chrome / Edge 126+, Safari 18.2+)
-   keep showing the old page until the new one is ready, then do a very short
-   cross-fade. The side menu is pulled out of that fade, so it stays perfectly
-   still while only the page content changes. Other browsers simply load the
-   page normally (the menu still reopens instantly, thanks to drawer-pre).
-   This block is NOT inside a media query. Keep it LAST.
-   ===================================================================== */
 @view-transition {
   navigation: auto;
 }
 
-.pos .pos-side   { view-transition-name: pos-side; }
-.pos .pos-toggle { view-transition-name: pos-toggle; }
+.pos .pos-side {
+  view-transition-name: pos-side;
+}
+.pos .pos-toggle {
+  view-transition-name: pos-toggle;
+}
 
-/* the menu and the X button never fade or slide: the new one just replaces the old */
 ::view-transition-group(pos-side),
 ::view-transition-group(pos-toggle) {
   animation: none;
