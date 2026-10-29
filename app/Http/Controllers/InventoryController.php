@@ -24,7 +24,7 @@ class InventoryController extends Controller
             ->when($sort === 'name', fn($q) => $q->orderBy('name'))
             ->when($sort === 'qty_asc', fn($q) => $q->orderBy('stock'))
             ->when($sort === 'qty_desc', fn($q) => $q->orderByDesc('stock'))
-            ->get();
+            ->paginate(5, ['*'], 'ipage')->appends($r->query());
 
         $movements = StockMovement::with('ingredient', 'user')
             ->when($r->query('ingredient'), fn($q, $id) => $q->where('ingredient_id', $id))
@@ -35,7 +35,7 @@ class InventoryController extends Controller
             })
             ->when($r->query('hfrom'), fn($q, $d) => $q->whereDate('created_at', '>=', $d))
             ->when($r->query('hto'), fn($q, $d) => $q->whereDate('created_at', '<=', $d))
-            ->latest()->paginate(10)->appends($r->query());
+            ->latest()->paginate(5)->appends($r->query());
 
         return view('staff.inventory', [
             'ingredients' => $ingredients,

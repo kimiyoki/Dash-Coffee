@@ -3,7 +3,7 @@
 @section('content')
     @php
         $f = fn($n) => \App\Models\Ingredient::fmt($n);
-        $keep = request()->except('page');
+        $keep = request()->except(['page', 'ipage']);
         $tab = fn($k) => route('staff.inventory', array_merge($keep, ['filter' => $k]));
         $hidden = fn(array $keys) => collect(request()->only($keys))->filter();
     @endphp
@@ -43,7 +43,7 @@
                 days</em></a>
     </div>
 
-    <h2 class="rp-sec">Ingredients</h2>
+    <h2 class="rp-sec" id="ingredients">Ingredients</h2>
     <form class="inv-bar" method="GET" action="{{ route('staff.inventory') }}">
         @foreach ($hidden(['hq', 'hfrom', 'hto', 'ingredient']) as $k => $v)
             <input type="hidden" name="{{ $k }}" value="{{ $v }}" />
@@ -95,7 +95,7 @@
                                     data-name="{{ $i->name }}" data-unit="{{ $i->unit }}"
                                     data-low="{{ $i->low_level }}">Edit</button>
                                 <a class="btn btn-soft btn-sm"
-                                    href="{{ route('staff.inventory', array_merge($keep, ['ingredient' => $i->id])) }}#history">History</a>
+                                    href="{{ route('staff.inventory', array_merge(request()->except('page'), ['ingredient' => $i->id])) }}#history">History</a>
                             </td>
                         </tr>
                     @endforeach
@@ -103,6 +103,24 @@
             </div>
             @if ($ingredients->isEmpty())
                 <div class="empty">No ingredients match.</div>
+            @endif
+            @if ($ingredients->hasPages())
+                @php $ingredients->withQueryString()->fragment('ingredients'); @endphp
+                <div class="pager">
+                    @if ($ingredients->onFirstPage())
+                        <span class="btn btn-soft disabled">‹ Prev</span>
+                    @else
+                        <a class="btn btn-soft" href="{{ $ingredients->previousPageUrl() }}">‹ Prev</a>
+                    @endif
+
+                    <span class="pager-info">Page {{ $ingredients->currentPage() }}@if (method_exists($ingredients, 'lastPage')) of {{ $ingredients->lastPage() }}@endif</span>
+
+                    @if ($ingredients->hasMorePages())
+                        <a class="btn btn-soft" href="{{ $ingredients->nextPageUrl() }}">Next ›</a>
+                    @else
+                        <span class="btn btn-soft disabled">Next ›</span>
+                    @endif
+                </div>
             @endif
         </div>
         <aside class="card" id="ingCard">
@@ -182,7 +200,24 @@
             @if ($movements->isEmpty())
                 <div class="empty">No stock movements found.</div>
             @endif
-            <div class="pager">{{ $movements->links('pagination::simple-default') }}</div>
+            @if ($movements->hasPages())
+                @php $movements->withQueryString()->fragment('history'); @endphp
+                <div class="pager">
+                    @if ($movements->onFirstPage())
+                        <span class="btn btn-soft disabled">‹ Prev</span>
+                    @else
+                        <a class="btn btn-soft" href="{{ $movements->previousPageUrl() }}">‹ Prev</a>
+                    @endif
+
+                    <span class="pager-info">Page {{ $movements->currentPage() }}@if (method_exists($movements, 'lastPage')) of {{ $movements->lastPage() }}@endif</span>
+
+                    @if ($movements->hasMorePages())
+                        <a class="btn btn-soft" href="{{ $movements->nextPageUrl() }}">Next ›</a>
+                    @else
+                        <span class="btn btn-soft disabled">Next ›</span>
+                    @endif
+                </div>
+            @endif
         </div>
 
         <aside class="card" id="adjCard">

@@ -12,7 +12,7 @@
     <div class="rp-head">
       <div>
         <h1 class="pos-title">Staff</h1>
-        <p class="staff-sub">{{ $users->count() }} account(s) · there is only one owner</p>
+        <p class="staff-sub">{{ $users->count() }} account(s)</p>
       </div>
       <div class="rp-clock"><small id="clkDate"></small><strong id="clkTime"></strong></div>
     </div>

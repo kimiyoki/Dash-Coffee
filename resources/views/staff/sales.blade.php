@@ -91,11 +91,15 @@
         </table></div>
       @endif
     </div>
+    @php
+      $outList = is_iterable($out) ? $out : collect();
+      $lowList = is_iterable($low) ? $low : collect();
+    @endphp
     <div class="rp-card">
-      <h3>Inventory alerts <small>{{ $out->count() + $low->count() }} item(s)</small></h3>
-      @foreach ($out as $i)<span class="chip out">✖ {{ $i->name }} · out of stock</span>@endforeach
-      @foreach ($low as $i)<span class="chip low">⚠ {{ $i->name }} · {{ $fmt($i->stock) }} {{ $i->unit }} left</span>@endforeach
-      @if ($out->isEmpty() && $low->isEmpty())<div class="empty">All ingredients are well stocked.</div>@endif
+      <h3>Inventory alerts <small>{{ $outList->count() + $lowList->count() }} item(s)</small></h3>
+      @foreach ($outList as $i)<span class="chip out">✖ {{ $i->name }} · out of stock</span>@endforeach
+      @foreach ($lowList as $i)<span class="chip low">⚠ {{ $i->name }} · {{ $fmt($i->stock) }} {{ $i->unit }} left</span>@endforeach
+      @if ($outList->isEmpty() && $lowList->isEmpty())<div class="empty">All ingredients are well stocked.</div>@endif
     </div>
   </div>
 
@@ -104,7 +108,7 @@
     <h3>Recent transactions <input class="search rp-search" id="txSearch" type="search" placeholder="Search order #, item, payment" /></h3>
     <div class="rp-scroll"><table class="rp-table" id="txTable">
       <tr><th>Order #</th><th>Date / time</th><th>Items</th><th>Payment</th><th class="num">Total</th><th></th></tr>
-      @foreach ($orders->take(50) as $o)
+      @foreach ($orders->take(3) as $o)
         <tr>
           <td><strong>#{{ $o->id }}</strong></td><td>{{ $o->created_at->format('M d, g:i A') }}</td>
           <td>{{ $o->items->map(fn ($i) => $i->qty . '× ' . $i->name)->implode(', ') }}</td>
@@ -203,30 +207,15 @@
     });
   </script>
   <script>
-    function updateReportClock() {
-        const now = new Date();
-        const timeZone = 'Asia/Manila';
-
-        document.getElementById('reportClockDate').textContent =
-            now.toLocaleDateString('en-PH', {
-                timeZone,
-                year: 'numeric',
-                month: 'short',
-                day: 'numeric'
-            });
-
-        document.getElementById('reportClockTime').textContent =
-            now.toLocaleTimeString('en-PH', {
-                timeZone,
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit',
-                hour12: true
-            });
-    }
-
-    updateReportClock();
-    setInterval(updateReportClock, 1000);
+    // Phones: the View column is hidden, so tapping a transaction row opens its receipt.
+    document.getElementById('txTable').addEventListener('click', function (e) {
+      if (!window.matchMedia('(max-width: 768px)').matches) return;
+      if (e.target.closest('a, button, input, select, textarea, label')) return;
+      var row = e.target.closest('tr');
+      if (!row || row.querySelector('th')) return;
+      var view = row.querySelector('td:last-child a[href]');
+      if (view) view.click();
+    });
   </script>
 
 @endsection
