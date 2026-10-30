@@ -9,7 +9,7 @@
       @forelse ($products as $p)
         <div class="prod-row">
           <div class="prod-info">
-            <img class="prod-thumb" src="{{ $p->image ? asset($p->image) : asset('images/dashcoffee-logo.jpg') }}" alt="{{ $p->name }}" />
+            <img class="prod-thumb" src="{{ $p->image ? asset($p->image) : asset('assets/dashcoffee-logo.jpg') }}" alt="{{ $p->name }}" />
             <div><strong>{{ $p->name }}</strong><small>{{ $p->category }} · ₱{{ number_format($p->price, 2) }}</small></div>
           </div>
           <span class="badge {{ $p->displayStatus() }}">{{ ['available' => 'Available', 'out_of_stock' => 'Out of Stock', 'hidden' => 'Hidden'][$p->displayStatus()] }}</span>
@@ -38,7 +38,7 @@
         <div class="fields">
                     <label>Product picture <span class="req">*</span></label>
           <div class="img-pick">
-            <img id="imgPrev" src="{{ asset('images/dashcoffee-logo.jpg') }}" alt="Preview" />
+            <img id="imgPrev" src="{{ asset('assets/dashcoffee-logo.jpg') }}" alt="Preview" />
             <div class="img-meta">
               <input type="file" name="image" id="imgIn" accept="image/png,image/jpeg" required />
               <label for="imgIn" class="btn btn-primary upload-btn"> Upload picture</label>

@@ -36,7 +36,7 @@
   @if (session('just_logged_in'))
     <div class="welcome-overlay">
       <div class="welcome-box">
-        <img src="{{ asset('images/dashcoffee-logo.jpg') }}" alt="DashCoffee logo" />
+        <img src="{{ asset('assets/dashcoffee-logo.jpg') }}" alt="DashCoffee logo" />
         <h2>Welcome, {{ auth()->user()->name }}</h2>
         <p>Opening your dashboard...</p>
       </div>
@@ -51,7 +51,7 @@
     <div class="pos-backdrop" id="posBackdrop"></div>
     <aside class="pos-side">
       <a href="{{ route('staff.dashboard') }}" class="pos-brand">
-        <img src="{{ asset('images/dashcoffee-logowhite.png') }}" alt="DashCoffee logo" />
+        <img src="{{ asset('assets/dashcoffee-logowhite.png') }}" alt="DashCoffee logo" />
         <div class="pos-brand-text">
           <span>DASH COFFEE</span>
         </div>
@@ -66,7 +66,7 @@
           <div class="pos-group-items">
             <a href="{{ route('staff.dashboard') }}"
               class="{{ request()->routeIs('staff.dashboard') ? 'active' : '' }}">
-              <img src="{{ asset('images/layout-dashboard.svg') }}" alt="" class="pos-icon"> Dashboard</a>
+              <img src="{{ asset('assets/layout-dashboard.svg') }}" alt="" class="pos-icon"> Dashboard</a>
           </div>
         </div>
 
@@ -74,9 +74,9 @@
           <button type="button" class="pos-group-label">Orders <i class="bi bi-chevron-down"></i></button>
           <div class="pos-group-items">
             <a href="{{ route('staff.orders') }}" class="{{ request()->routeIs('staff.orders') ? 'active' : '' }}">
-              <img src="{{ asset('images/calculator.svg') }}" alt="" class="pos-icon"> Order Entry</a>
+              <img src="{{ asset('assets/calculator.svg') }}" alt="" class="pos-icon"> Order Entry</a>
             <a href="{{ route('staff.history') }}" class="{{ request()->routeIs('staff.history','staff.receipt') ? 'active' : '' }}">
-              <img src="{{ asset('images/clipboard-clock.svg') }}" alt="" class="pos-icon"> Order History</a>
+              <img src="{{ asset('assets/clipboard-clock.svg') }}" alt="" class="pos-icon"> Order History</a>
           </div>
         </div>
 
@@ -85,11 +85,11 @@
           <div class="pos-group-items">
             @if ($owner)
               <a href="{{ route('staff.menu') }}" class="{{ request()->routeIs('staff.menu') ? 'active' : '' }}">
-                <img src="{{ asset('images/file-pen.svg') }}" alt="" class="pos-icon"> Manage Menu</a>
+                <img src="{{ asset('assets/file-pen.svg') }}" alt="" class="pos-icon"> Manage Menu</a>
             @endif
             <a href="{{ route('staff.inventory') }}"
               class="{{ request()->routeIs('staff.inventory', 'staff.inv-reports') ? 'active' : '' }}">
-              <img src="{{ asset('images/package.svg') }}" alt="" class="pos-icon"> Inventory</a>
+              <img src="{{ asset('assets/package.svg') }}" alt="" class="pos-icon"> Inventory</a>
           </div>
         </div>
 
@@ -98,7 +98,7 @@
             <button type="button" class="pos-group-label">Analytics <i class="bi bi-chevron-down"></i></button>
             <div class="pos-group-items">
               <a href="{{ route('staff.sales') }}" class="{{ request()->routeIs('staff.sales') ? 'active' : '' }}">
-                <img src="{{ asset('images/chart-column-big.svg') }}" alt="" class="pos-icon"> Sales Report</a>
+                <img src="{{ asset('assets/chart-column-big.svg') }}" alt="" class="pos-icon"> Sales Report</a>
             </div>
           </div>
 
@@ -107,7 +107,7 @@
             <div class="pos-group-items">
               <a href="{{ route('staff.accounts') }}"
                 class="{{ request()->routeIs('staff.accounts') ? 'active' : '' }}">
-                <img src="{{ asset('images/folder-users.svg') }}" alt="" class="pos-icon"> Staff</a>
+                <img src="{{ asset('assets/folder-users.svg') }}" alt="" class="pos-icon"> Staff</a>
             </div>
           </div>
         @endif

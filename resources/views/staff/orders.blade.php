@@ -28,7 +28,7 @@
                         data-id="{{ $p->id }}" data-name="{{ $p->name }}" data-price="{{ $p->price }}"
                         data-cat="{{ $p->category }}">
                         <img class="tile-img"
-                            src="{{ $p->image ? asset($p->image) : asset('images/dashcoffee-logo.jpg') }}"
+                            src="{{ $p->image ? asset($p->image) : asset('assets/dashcoffee-logo.jpg') }}"
                             alt="{{ $p->name }}" />
                         <strong>{{ $p->name }}</strong>
                         <span>₱{{ number_format($p->price, 2) }}</span>

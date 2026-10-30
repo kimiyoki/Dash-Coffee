@@ -106,7 +106,7 @@
     .pos-main:has(.staff-page) {
       background:
         linear-gradient(rgba(198, 217, 190, 0.82), rgba(198, 217, 190, 0.82)),
-        url('../images/system-background.png') center / cover no-repeat fixed;
+        url('../assets/system-background.png') center / cover no-repeat fixed;
     }
     .pos-main:has(.staff-page) :is(.rp-card, .rp-head, .rp-bar) {
       background: #fff;

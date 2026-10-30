@@ -25,7 +25,7 @@
 </head>
 <body>
   <table class="head"><tr>
-    <td style="width:62px"><img class="logo" src="{{ public_path('images/dashcoffee-logo.jpg') }}" /></td>
+    <td style="width:62px"><img class="logo" src="{{ public_path('assets/dashcoffee-logo.jpg') }}" /></td>
     <td><h1>DASH COFFEE — {{ $title }}</h1>
       <div class="meta">Period: {{ $period }}@if ($type === 'current') · Filter: {{ ['all' => 'All ingredients', 'low' => 'Low stock', 'out' => 'Out of stock'][$status] }}@endif</div>
       <div class="meta">Generated: {{ now()->format('M d, Y g:i A') }}</div></td>

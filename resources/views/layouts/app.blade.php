@@ -21,7 +21,7 @@
           aria-label="DashCoffee brand"
           class="brand {{ request()->routeIs('home') ? 'active' : '' }}"
           style="text-decoration: none; color: inherit;">
-          <img src="{{ asset('images/dashcoffee-logo.png') }}" alt="DashCoffee logo" class="brand-logo" />
+          <img src="{{ asset('assets/dashcoffee-logo.png') }}" alt="DashCoffee logo" class="brand-logo" />
           <span class="brand-text">DASH COFFEE</span>
         </a>
         <div class="nav-links" id="navLinks" aria-label="Navigation links">

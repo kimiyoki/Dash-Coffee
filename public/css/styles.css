@@ -221,7 +221,7 @@ p {
 
 .hero {
     background: linear-gradient(135deg, rgba(24, 36, 27, 0.96), rgba(30, 41, 34, 0.9)),
-        url('../images/backgroundhomepage.jpg') center/cover no-repeat;
+        url('../assets/backgroundhomepage.jpg') center/cover no-repeat;
     color: var(--white);
     padding: 112px 0 72px;
 }
@@ -1069,11 +1069,6 @@ body:not(.staff-body) {
     transition: clip-path 0.4s ease, opacity 0.9s ease;
 }
 
-
-
-
-
-
 .menu-card-hover-desc {
     position: absolute;
     left: 0;
@@ -1085,30 +1080,7 @@ body:not(.staff-body) {
     font-size: 11.7px;
     line-height: 1.15;
     font-weight: bold;  
-
-
-
-
-
-
-
-
-
-
-
-
-
     color: #5e6868;
-
-
-
-
-
-
-
-
-
-
     background: linear-gradient(to top,
     rgba(255, 255, 255, 0.48) 0%,
     rgba(255, 255, 255, 0.2) 55%,
@@ -1118,20 +1090,6 @@ body:not(.staff-body) {
         opacity: 0;
     transition: opacity 0.4s ease;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* Hover */
 .menu-card:hover {
@@ -1147,5 +1105,383 @@ body:not(.staff-body) {
 .menu-card:hover .menu-card-hover-image img {
     opacity: 1;
     clip-path: inset(0 0 0 0);
-    transition-delay: 0.3s;   /* aangat pagkatapos lumabas ng text */
+    transition-delay: 0.5s;   /* aangat pagkatapos lumabas ng text */
+}
+
+.filter-bar {
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 8px;
+}
+
+.filter-btn {
+    white-space: nowrap;
+    padding: 10px 14px;
+    font-size: 0.9rem;
+}
+
+/* on small screens, scroll sideways instead of wrapping */
+@media (max-width: 1100px) {
+    .filter-bar {
+        justify-content: flex-start;
+        overflow-x: auto;
+    }
+}
+
+/* Picture as the card's background, on the right side (hover pop-up stays as is) */
+.menu-card-thumb {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 46%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0 19px 19px 0;
+    pointer-events: none;
+    z-index: 0;
+    /* fades into the card's green on the left edge */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 55%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 55%);
+}
+
+/* text stays on top and on the left, on a single line so every card is the same height */
+.menu-card-meta {
+    position: relative;
+    z-index: 1;
+    max-width: 84%;
+    white-space: nowrap;
+}
+
+.menu-card-top {
+    max-width: 84%;
+}
+
+.menu-card-name {
+    position: relative;
+    z-index: 1;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;   /* only kicks in if a name is really too long */
+    min-width: 0;
+}
+
+/* price is a little tag in the bottom-right corner, readable on any picture */
+.menu-card-price {
+    position: absolute;
+    right: 12px;
+    bottom: 10px;
+    z-index: 2;
+    padding: 3px 11px;
+    font-size: 0.9rem;
+    color: #000;
+    white-space: nowrap;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 999px;
+    box-shadow: 0 2px 8px rgba(24, 36, 27, 0.15);
+}
+
+/* the card loses its top-right corner on hover (to join the pop-up), so the picture does too */
+.menu-card:hover .menu-card-thumb {
+    border-top-right-radius: 0;
+}
+
+/* Tap support: on touch screens, tapping a card opens the same pop-up as hovering.
+   Only the tapped card changes; tap anywhere else to close it. */
+.menu-card {
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+@media (hover: none) {
+    .menu-card:focus {
+        z-index: 20;
+        transform: translateY(var(--popup-shift));
+        box-shadow: 0 18px 26px rgba(76, 175, 80, 0.12);
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+
+    .menu-card:focus .menu-card-hover-desc {
+        opacity: 1;
+    }
+
+    .menu-card:focus .menu-card-hover-image img {
+        opacity: 1;
+        clip-path: inset(0 0 0 0);
+        transition-delay: 0.5s;
+    }
+
+    .menu-card:focus .menu-card-thumb {
+        border-top-right-radius: 0;
+    }
+}
+
+/* Boxes closer together: same small gap in every direction */
+.menu-grid {
+    gap: 18px;
+}
+
+/* Only the box the cursor is on (or that is tapped) moves down,
+   so the original pop-up has room above it. Nothing else moves. */
+.menu-grid {
+    --popup-shift: 102px;          /* pop-up height (120px) minus the grid gap (18px) */
+}
+
+.menu-card:hover {
+    transform: translateY(var(--popup-shift));
+}
+
+/* the pop-up stays "hovered" while the cursor is on it, so the box doesn't flicker */
+.menu-card:hover .menu-card-hover-image {
+    pointer-events: auto;
+}
+
+@media (hover: none) {
+    .menu-card:focus .menu-card-hover-image {
+        pointer-events: auto;
+    }
+}
+
+/* Less empty space between the filter buttons and the first row */
+.filter-bar {
+    margin-bottom: 36px;
+}
+
+.about-img {
+  width: 100%;
+  height: 380px; /* Adjust this value (e.g., 380px or 400px) to match your desired height */
+  object-fit: cover; /* Ensures the image fills the area neatly without distortion */
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  display: block;
+}
+
+.map-card {
+  position: relative;
+  /* This stacks a gradient layer ON TOP of your storefront photo background */
+  background: 
+    linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(223, 240, 227, 0.85) 100%), 
+    url('../assets/dash-coffee-building.png') center/cover no-repeat;
+  
+  border-radius: 24px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end; /* Puts the text box at the bottom */
+  padding: 1.5rem;
+}
+
+/* Optional: if you want a clean little card box for the text to sit on top of the gradient photo */
+.map-card-content {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(4px);
+  padding: 1rem;
+  border-radius: 16px;
+  text-align: center;
+}
+
+.map-card-content .map-pin img {
+  width: 24px;
+  height: 24px;
+  display: block;
+  margin: 0 auto 0.3rem auto;
+}
+
+.login-welcome-side {
+  /* Set the background gradient overlay combined with your new image */
+  background: 
+    linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.65)), 
+    url('../assets/background-homepage\(2\).png') center/cover no-repeat;
+    
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2.5rem;
+  position: relative;
+}
+
+.contact-card {
+  position: relative;
+  /* Lightened alpha values (0.4 and 0.5) so the photo shows through clearly */
+  background: 
+    linear-gradient(180deg, rgba(208, 232, 208, 0.4) 0%, rgba(168, 213, 186, 0.55) 100%), 
+    url('../assets/contact-background.png') center/cover no-repeat;
+  
+  min-height: 260px;
+  border-radius: 28px;
+  border: 1px solid rgba(24, 36, 27, 0.06);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 28px;
+  box-shadow: 0 18px 32px rgba(24, 36, 27, 0.06);
+  overflow: hidden;
+}
+
+.contact-card {
+    position: relative;
+    /* Soft green gradient tint over the image */
+    background: 
+        linear-gradient(180deg, rgba(208, 232, 208, 0.35) 0%, rgba(168, 213, 186, 0.45) 100%), 
+        url('../assets/backgroundhomepage.jpg') center/cover no-repeat; /* Replace with your image file name */
+    min-height: 260px;
+    border-radius: 28px;
+    border: 1px solid rgba(24, 36, 27, 0.08);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0 18px 32px rgba(24, 36, 27, 0.06);
+    overflow: hidden;
+}
+
+/* Glass card container that makes the text pop clearly */
+.contact-card-content {
+    width: 100%;
+    max-width: 320px;
+    background: rgba(255, 255, 255, 0.88); /* Semi-transparent clean white */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 20px 22px;
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* Ensure green tag text stays bold and vivid */
+.contact-card .mini-text {
+    color: #2e7d32; /* Stronger dark green for contrast */
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+/* Make main headline sharp and dark */
+.contact-card h3 {
+    color: #18241b;
+    font-weight: 800;
+    line-height: 1.25;
+    font-size: 1.35rem;
+}
+
+.map-card,
+.contact-card {
+    position: relative;
+    min-height: 280px;
+    border-radius: 28px;
+    border: 1px solid rgba(24, 36, 27, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centers vertically */
+    align-items: center;     /* Centers horizontally */
+    text-align: center;
+    padding: 24px;
+    box-shadow: 0 18px 32px rgba(24, 36, 27, 0.06);
+    overflow: hidden;
+}
+
+/* Background image for Map Card */
+.map-card {
+    background: 
+        linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(223, 240, 227, 0.5) 100%), 
+        url('../assets/dash-coffee-building.png') center/cover no-repeat;
+}
+
+/* Background image for Contact Card */
+.contact-card {
+    background: 
+        linear-gradient(180deg, rgba(208, 232, 208, 0.3) 0%, rgba(168, 213, 186, 0.45) 100%), 
+        url('../assets/contact-background.png') center/cover no-repeat;
+}
+
+.map-card-content,
+.contact-card-content {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto; /* Keeps card centered */
+    background: linear-gradient(
+        180deg, 
+        rgba(255, 255, 255, 0.75) 0%, 
+        rgba(235, 247, 238, 0.45) 100%
+    );
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 22px 20px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+/* The box that moves down gets a solid background,
+   so the box underneath it doesn't show through */
+.menu-card:hover {
+    background:
+        linear-gradient(180deg, var(--mint), rgba(208, 232, 208, 0.35)),
+        var(--white);
+}
+
+@media (hover: none) {
+    .menu-card:focus {
+        background:
+            linear-gradient(180deg, var(--mint), rgba(208, 232, 208, 0.35)),
+            var(--white);
+    }
+}
+
+/* Tap (phone / tablet): the script adds .is-open to the tapped box.
+   It does exactly what hovering does on desktop. */
+.menu-card.is-open {
+    z-index: 20;
+    transform: translateY(var(--popup-shift));
+    box-shadow: 0 18px 26px rgba(76, 175, 80, 0.12);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    background:
+        linear-gradient(180deg, var(--mint), rgba(208, 232, 208, 0.35)),
+        var(--white);
+}
+
+.menu-card.is-open .menu-card-hover-desc {
+    opacity: 1;
+}
+
+.menu-card.is-open .menu-card-hover-image {
+    pointer-events: auto;
+}
+
+.menu-card.is-open .menu-card-hover-image img {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    transition-delay: 0.5s;
+}
+
+.menu-card.is-open .menu-card-thumb {
+    border-top-right-radius: 0;
+}
+
+/* Boxes below the active one (same column) move down with it,
+   so nothing gets covered and nothing else moves */
+:root {
+    --popup-shift: 102px;          /* pop-up height (120px) minus the grid gap (18px) */
+}
+
+.menu-card.is-shifted {
+    transform: translateY(var(--popup-shift));
+}
+
+.addon-banner {
+    transition: transform 0.25s ease;
+}
+
+.addon-banner.is-shifted {
+    transform: translateY(var(--popup-shift));
 }

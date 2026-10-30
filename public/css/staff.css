@@ -197,7 +197,7 @@
   padding-bottom: 12vh;
   background:
     linear-gradient(to top, rgba(10, 30, 14, 0.7), transparent 50%),
-    url('../images/backgroundhomepage.jpg') center / cover no-repeat;
+    url('../assets/backgroundhomepage.jpg') center / cover no-repeat;
 }
 
 .welcome-box img {
@@ -237,7 +237,7 @@
 .welcome-overlay {
   background:
     linear-gradient(160deg, rgba(24, 36, 27, 0.25), rgba(24, 36, 27, 0.4)),
-    url('../images/backgroundhomepage.jpg') center / cover no-repeat;
+    url('../assets/backgroundhomepage.jpg') center / cover no-repeat;
 }
 
 .welcome-box {

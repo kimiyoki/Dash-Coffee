@@ -112,7 +112,7 @@
     .pos-main:has(.dash-page) {
       background:
         linear-gradient(rgba(198, 217, 190, 0.82), rgba(198, 217, 190, 0.82)),
-        url('../images/system-background.png') center / cover no-repeat fixed;
+        url('../assets/system-background.png') center / cover no-repeat fixed;
     }
     .pos-main:has(.dash-page) :is(.card, .rp-card, .rp-head, .dash-stat) {
       background: #fff;

@@ -637,7 +637,7 @@
                 "symfony/process": "^4.4 || ^5.4 || ^6.2 || ^7.0"
             },
             "suggest": {
-                "ext-gd": "Needed to process images",
+                "ext-gd": "Needed to process assets",
                 "ext-gmagick": "Improves image processing performance",
                 "ext-imagick": "Improves image processing performance",
                 "ext-zlib": "Needed for pdf stream compression"
@@ -3023,7 +3023,7 @@
                 "array",
                 "core",
                 "datetime",
-                "images",
+                "assets",
                 "json",
                 "nette",
                 "paginator",
@@ -6647,7 +6647,7 @@
             },
             "suggest": {
                 "doctrine/orm": "Required to use Faker\\ORM\\Doctrine",
-                "ext-curl": "Required by Faker\\Provider\\Image to download images.",
+                "ext-curl": "Required by Faker\\Provider\\Image to download assets.",
                 "ext-dom": "Required by Faker\\Provider\\HtmlLorem for generating random HTML.",
                 "ext-iconv": "Required by Faker\\Provider\\ru_RU\\Text::realText() for generating real Russian text.",
                 "ext-mbstring": "Required for multibyte Unicode string functionality."

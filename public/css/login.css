@@ -113,7 +113,7 @@
   color: var(--white);
   background:
     linear-gradient(160deg, rgba(24, 36, 27, 0.55), rgba(24, 36, 27, 0.9)),
-    url('../images/backgroundhomepage.jpg') center/cover no-repeat;
+    url('../assets/backgroundhomepage.jpg') center/cover no-repeat;
 }
 
 .login-welcome-side h1 {

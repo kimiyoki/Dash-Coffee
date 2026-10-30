@@ -10,6 +10,8 @@ use App\Http\Controllers\InventoryReportController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\FeedbackController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +33,10 @@ Route::view('/', 'homepage')->name('home');
 Route::view('/about', 'about')->name('about');
 Route::view('/menu', 'menu')->name('menu');
 Route::view('/contact', 'contact')->name('contact');
+
+Route::post('/contact/feedback', 
+[FeedbackController::class, 'store'])
+    ->name('contact.feedback');
 
 /*
 |--------------------------------------------------------------------------

@@ -526,7 +526,7 @@
 .pos-main {
     background:
         linear-gradient(rgba(246, 248, 242, 0.78), rgba(246, 248, 242, 0.78)),
-        url('../images/system-background.png') center / cover no-repeat fixed;
+        url('../assets/system-background.png') center / cover no-repeat fixed;
 }
 
 .card,
@@ -1979,7 +1979,7 @@
 .pos-main:has(.ir-sum) {
     background:
         linear-gradient(rgba(198, 217, 190, 0.82), rgba(198, 217, 190, 0.82)),
-        url('../images/system-background.png') center / cover no-repeat fixed;
+        url('../assets/system-background.png') center / cover no-repeat fixed;
 }
 
 /* Cards, filter bars and the title banner: solid white with a clear edge */
@@ -2179,7 +2179,7 @@
 .pos-main:has(.rp-kpis) {
     background:
         linear-gradient(rgba(198, 217, 190, 0.82), rgba(198, 217, 190, 0.82)),
-        url('../images/system-background.png') center / cover no-repeat fixed;
+        url('../assets/system-background.png') center / cover no-repeat fixed;
 }
 
 .pos-main:has(.rp-kpis) :is(.rp-card, .rp-bar, .rp-head, .rp-kpi:not(.main)) {
@@ -2231,7 +2231,7 @@
 .pos-main:has(.menu-layout) {
     background:
         linear-gradient(rgba(198, 217, 190, 0.82), rgba(198, 217, 190, 0.82)),
-        url('../images/system-background.png') center / cover no-repeat fixed;
+        url('../assets/system-background.png') center / cover no-repeat fixed;
     font-family: "Source Sans 3", sans-serif;
 }
 
@@ -2522,7 +2522,7 @@
 .pos-main:has(.hist) {
     background:
         linear-gradient(rgba(198, 217, 190, 0.82), rgba(198, 217, 190, 0.82)),
-        url('../images/system-background.png') center / cover no-repeat fixed;
+        url('../assets/system-background.png') center / cover no-repeat fixed;
 }
 
 .pos-main:has(.hist) :is(.rp-card, .rp-head) {
@@ -2570,7 +2570,7 @@
 .pos-main:has(.prod-grid) {
     background:
         linear-gradient(rgba(198, 217, 190, 0.82), rgba(198, 217, 190, 0.82)),
-        url('../images/system-background.png') center / cover no-repeat fixed;
+        url('../assets/system-background.png') center / cover no-repeat fixed;
 }
 
 .pos-main:has(.prod-grid) :is(.rp-head, .order-panel, .prod-tile) {
